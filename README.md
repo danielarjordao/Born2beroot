@@ -242,3 +242,28 @@ O SSH é uma ferramenta fundamental para a administração e o acesso seguro a s
 - Encontrar ```#Port22``` e alterar para ```Port4242``` - Conforme solicitada a porta 4242 no subject
 - ```sudo service ssh restart``` - Reiniciar o SSH para atualizar as alteraoes
 - ```sudo service ssh status``` - Confirmar alteracoes
+
+### O que é UFW e pra que serve
+O UFW, que significa "Uncomplicated Firewall," é uma ferramenta de firewall projetada para simplificar o gerenciamento de regras e facilitar o bloqueio ou liberação de tráfego em portas específicas.
+
+### Instalação e configuração do UFW
+- ```sudo apt install ufw``` - Instalar o UFW
+- ```Y``` - Confirmar instalacao
+- ```sudo ufw enable``` - Ativar UFW
+- ```sudo ufw allow 4242``` - Abrir porta 4242 confirme solicitado no subject
+- ```sudo ufw status``` - Conferir se esta ativo e se a unica porta aberta e a 4242
+
+### Configuração de senha forte para o sudo
+- ```mkdir /var/log/sudo``` - Criar a pasta onde ficara os logs das utilizacoes do sudo, conforme solicitado
+- ```touch /etc/sudoers.d/sudo_config``` - Criar o ficheiro com as configuracoes de senha
+- ```nano /etc/sudoers.d/sudo_config``` - Adicionar comandos abaixo com especificacoes solicitadas e necessarias
+- ```Defaults  passwd_tries=3``` - O número máximo de tentativas de senha para um comando sudo é 3
+- ```Defaults  badpass_message="Error"``` - Especifica uma mensagem personalizada de erro que será exibida se um usuário inserir uma senha incorreta ao usar o sudo
+- ```Defaults  logfile="/var/log/sudo/sudo_log"``` - Define o caminho do arquivo de log para o sudo
+- ```Defaults  log_input, log_output``` - Habilita o registro de entrada e saída no arquivo de log configurado
+- ```Defaults  iolog_dir="/var/log/sudo"``` - Especifica o diretório onde os logs de entrada e saída do sudo serão armazenados
+- ```Defaults  requiretty``` - Indica que o sudo só pode ser executado a partir de um terminal interativo (TTY)
+- ```Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"``` - Especifica os diretórios nos quais os comandos podem ser procurados quando o sudo é usado
+
+  
+
