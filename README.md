@@ -3,17 +3,14 @@
 Você vai criar sua primeira máquina no VirtualBox, seguindo instruções específicas. 
 Ao final, será capaz de configurar seu próprio sistema operacional com regras rigorosas.
 
-## Como uma máquina virtual funciona e qual é o seu propósito?
+### Como uma máquina virtual funciona e qual é o seu propósito?
 Uma máquina virtual é um software que cria um ambiente de computação independente dentro de outro sistema operacional. 
 Tem como propósito o isolamento entre sistemas operacionais, produzindo uma área de testes segura, otimizando a utilização de uma máquina física e permitindo uma fácil migração e recuperação de sistemas em caso de falhas.
 
 ➤ As instruções destacam que, ao configurar um servidor, é necessário instalar apenas os serviços mínimos essenciais. Nesse contexto, a instalação de interfaces gráficas, como X.org ou equivalentes, é proibida. 
 
-## 1 - Sistema operacional
-Você deve agora escolher o sistema operacional, Rocky ou Debian.
+➤ Você deve agora escolher o sistema operacional, Rocky ou Debian.
 
-O LVM (Logical Volume Manager) é uma tecnologia que possibilita o gerenciamento mais flexível do espaço de armazenamento. 
-Ele permite a criação de volumes lógicos, que podem ser utilizados para armazenar e organizar seus dados de acordo com a lógica que fizer mais sentido para você, independentemente do disco físico em que eles estejam armazenados realmente.
 ### Quais são as diferenças entre os sistemas operacionais Rocky e Debian? E qual a sua escolha?
 O Rocky Linux é direcionado principalmente para ambientes empresariais e servidores. E
 mbora seja mais complexo e tenha uma comunidade mais recente, oferece uma alternativa para aqueles que buscam a estabilidade anteriormente proporcionada pelo CentOS.
@@ -33,10 +30,7 @@ O AppArmor ajuda a proteger contra ameaças de segurança ao restringir as açõ
 
 [Baixar Debian](https://www.debian.org/)
 
-## 2 - Instalação da Máquina
-
-Para iniciar esta etapa, é necessário decidir se você pretende realizar a parte bônus ou não, pois haverá grandes diferenças na instalação. 
-Eu escolhi incluir o bônus, então levarei em consideração as instruções adicionais.
+➤ Para iniciar esta etapa, é necessário decidir se você pretende realizar a parte bônus ou não, pois haverá grandes diferenças na instalação. Eu escolhi incluir o bônus, então levarei em consideração as instruções adicionais.
 
 ### O que é o LVM e como ele funciona?
 O LVM (Logical Volume Manager) é uma tecnologia que possibilita o gerenciamento mais flexível do espaço de armazenamento. 
@@ -67,7 +61,7 @@ O GRUB, que significa "Grand Unified Bootloader," é um gerenciador de inicializ
 ### Memória alocada dinamicamente
 Significa que a VM não recebe uma alocação fixa de memória no momento em que é criada, em vez disso, a memória é alocada dinamicamente conforme necessário, até atingir um limite máximo definido.
 
-### Passo a passo
+### Instalação da Máquina
 - New
 - Name / Machine folder (soginfre) / Linux / Debian 64-bit
 - The recommended memory size: 1024MB
@@ -102,6 +96,7 @@ Significa que a VM não recebe uma alocação fixa de memória no momento em que
 - Create a new partition
 - 525336576B (524288000B + 1048576B) - Primeiro estamos criando o Boot
 - Primary - Pois é a partição de inicialização
+- Beginning - Pois queremos que a nova partição seja criada no início do espaço disponível
 - Mount point
 - /boot
 - Done setting up the partition
@@ -115,7 +110,7 @@ Significa que a VM não recebe uma alocação fixa de memória no momento em que
 - Configure encrypted volumes - Encriptar as partições
 - Yes
 - Create encrypted volumes
-- Selecionar /dev/sda5 - Selecionar o que encriptar
+- Selecionar /dev/sda5 - Selecionar swapo que encriptar
 - Done setting up the partition
 - Finish
 - Yes
@@ -204,3 +199,46 @@ Significa que a VM não recebe uma alocação fixa de memória no momento em que
 - /dev/sda - Aonde instalar
 - Continue
 
+## Configuração de máquina virtual
+
+### Entrar na máquina virtual
+- Selecionar ```Debian``` GNU/Linux
+- Password de encriptacao
+- Login criado
+- Password do login criado
+
+### O que é SUDO?
+O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente permissões de superusuário a um usuário regular. Utilizado para realizar ações que afetam o sistema, o sudo exige autenticação, garantindo segurança e controle sobre operações críticas. Isso permite que usuários autorizados executem comandos com privilégios elevados de forma controlada e temporária.
+
+### Instalação do sudo
+- ```Su``` - Entrar como usuario root
+- Password do root
+- ```apt install sudo``` - Instalar pacotes necessarios
+- ```sudo reboot``` - Reiniciar a maquina
+- ```sudo -V``` - Para checar a instalacao do sudo
+- ```sudo adduser login``` - Checar se o login criado na instalacao ja existe
+- ```sudo addgroup user42``` - Criar grupo que foi solicitado no subject
+- ```getent group user42``` - Checar se o grupo foi criado corretamente, getent (get entries)
+- ```sudo adduser login user42``` - Adicionar usuario no grupo user42
+- ```sudo adduser login sudo``` - Adicionar usuario no grupo sudo e lhe dar as permissoes de usuario sudo
+- ```getent group user42``` - Checar se adicionamos o usuario corretamente no grupo
+- ```getent group sudo``` - Checar se adicionamos o usuario corretamente no grupo
+
+### O que é SSH e pra que serve
+O SSH é uma ferramenta fundamental para a administração e o acesso seguro a sistemas remotos. Ele é amplamente utilizado em ambientes de servidores, data centers e em qualquer situação em que seja necessário realizar operações remotas de forma segura.
+
+### Instalação e configuração do SSH
+- ```sudo apt update``` - Atualizar a lista de pacotes disponíveis nos repositórios configurados no sistema
+- ```sudo apt install openssh-server``` - Instalar OpenSSH, principal ferramenta de conectividade para o login remoto com o protocolo SSH
+- ```Y``` - Para confirmar
+- ```sudo service ssh status``` - Verificar se esta ativo e foi instalado corretamente
+- ```su``` - Ir para o root para ter as permissoes que precisamos
+- Password do root
+- ```nano /etc/ssh/sshd_config``` - Alterar configuracoes do ssh
+- Encontrar ```#Port22``` e alterar para ```Port4242``` - Conforme solicitada a porta 4242 no subject
+- Encontrar ```#PermitRootLogin no``` e apagar o # para tirar do comentario - Conforme solicitado no subject para nao permitir o login pelo usuario Root.
+- Salvar alteracoes feitas
+- ```nano /etc/ssh/ssh_config``` - Alterar outras configuracoes do ssh
+- Encontrar ```#Port22``` e alterar para ```Port4242``` - Conforme solicitada a porta 4242 no subject
+- ```sudo service ssh restart``` - Reiniciar o SSH para atualizar as alteraoes
+- ```sudo service ssh status``` - Confirmar alteracoes
