@@ -32,6 +32,13 @@ O AppArmor ajuda a proteger contra ameaças de segurança ao restringir as açõ
 
 ➤ Para iniciar esta etapa, é necessário decidir se você pretende realizar a parte bônus ou não, pois haverá grandes diferenças na instalação. Eu escolhi incluir o bônus, então levarei em consideração as instruções adicionais.
 
+### O que é VDI
+O VDI representa uma imagem de disco virtual que contém o sistema operacional, aplicativos e dados associados a uma máquina virtual.
+Ao criar uma máquina virtual no VirtualBox, você geralmente escolhe um formato de disco, como VDI, durante o processo de configuração. Isso determina como o armazenamento da máquina virtual será representado no sistema de hospedeiro. O uso do VDI facilita a portabilidade de máquinas virtuais entre diferentes sistemas que executam o VirtualBox.
+
+### Memória alocada dinamicamente
+Significa que a VM não recebe uma alocação fixa de memória no momento em que é criada, em vez disso, a memória é alocada dinamicamente conforme necessário, até atingir um limite máximo definido.
+
 ### O que é o LVM e como ele funciona?
 O LVM (Logical Volume Manager) é uma tecnologia que possibilita o gerenciamento mais flexível do espaço de armazenamento. 
 Ele permite a criação de volumes lógicos, que podem ser utilizados para armazenar e organizar seus dados de acordo com a lógica que fizer mais sentido para você, independentemente do disco físico em que eles estejam realmente armazenados.
@@ -57,9 +64,6 @@ Ele permite a criação de volumes lógicos, que podem ser utilizados para armaz
 
 ### O que é GRUB
 O GRUB, que significa "Grand Unified Bootloader," é um gerenciador de inicialização (bootloader) amplamente utilizado em sistemas operacionais baseados em Unix, como Linux. O objetivo principal do GRUB é carregar e iniciar o sistema operacional no computador quando este é inicializado.
-
-### Memória alocada dinamicamente
-Significa que a VM não recebe uma alocação fixa de memória no momento em que é criada, em vez disso, a memória é alocada dinamicamente conforme necessário, até atingir um limite máximo definido.
 
 ### Configuração de máquina virtual
 - Selecionar ```Debian``` GNU/Linux
@@ -149,9 +153,3 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 - ```reject_username``` - Não pode conter o nome do utilizador
 - ```difok=7``` - Deve ter pelo menos 7 caracteres que não façam parte da senha antiga
 - ```enforce_for_root``` - Implementar esta política para o utilizador root
-
-### Conectar via SSH
-- Ir no na configuracao da maquina virtual
-- 
-   
-
