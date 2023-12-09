@@ -265,5 +265,31 @@ O UFW, que significa "Uncomplicated Firewall," é uma ferramenta de firewall pro
 - ```Defaults  requiretty``` - Indica que o sudo só pode ser executado a partir de um terminal interativo (TTY)
 - ```Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"``` - Especifica os diretórios nos quais os comandos podem ser procurados quando o sudo é usado
 
+### Vantagens e desvantagens do uso de políticas de senha rigorosas
+- Vantagens: Contribuem para senhas mais seguras, dificultando a adivinhação ou a quebra por força bruta.
+- Desvantagens: Senhas muito complexas ou requisitos frequentes de alteração podem levar os usuários a escolher senhas mais fáceis de lembrar ou a anotá-las, comprometendo a segurança.
+
+### O que é Libpam-pwquality
+A função específica do libpam-pwquality é fornecer verificações e políticas de qualidade de senha durante o processo de autenticação. Essa biblioteca é frequentemente usada para melhorar a segurança das senhas no sistema. 
+
+### Configurações de política de senhas fortes
+- ```nano /etc/login.defs``` - Entrar no ficheiro e editar politicas de senha
+- Encontrar ```PASS_MAX_DAYS 99999``` e alterar para ```PASS_MAX_DAYS 30``` - Maximo de 30 dias utilizando a mesma senha.
+- Encontrar ```PASS_MIN_DAYS 0``` e alterar para ```PASS_MIN_DAYS 2``` - Minimo de 2 dias com a mesma senha
+- ```PASS_WARN_AGE 7``` - Ja esta configurado certo, para dar um aviso 7 dias antes da senha expirar
+- ```sudo apt install libpam-pwquality``` - Instalar a biblioteca Libpam-pwquality para colocar os requisitos
+- ```Y``` - Confirmar instalacao
+- ```nano /etc/pam.d/common-password``` - Entrar no arquivo para colocar requisitos solicitados
+- Encontrar ```pam_pwquality.so retry-=3``` - Atualmente so existe o comando para tentar no maximo 3 vezes
+- ```minlen=10``` - O número mínimo de caracteres que a senha deve conter
+- ```ucredit=-1``` - Deve conter pelo menos uma letra maiúscula
+- ```dcredit=-1``` - Deve conter pelo menos um dígito
+- ```lcredit=-1``` - Deve conter pelo menos uma letra minúscula
+- ```maxrepeat=3``` - Não pode ter o mesmo carácter mais de 3 vezes seguidas
+- ```reject_username``` - Não pode conter o nome do utilizador
+- ```difok=7``` - Deve ter pelo menos 7 caracteres que não façam parte da senha antiga
+- ```enforce_for_root``` - Implementar esta política para o utilizador root
+
+
   
 
