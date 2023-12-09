@@ -1,4 +1,4 @@
-# Bron2beroot
+# Born2beroot
 
 Você vai criar sua primeira máquina no VirtualBox, seguindo instruções específicas. 
 Ao final, será capaz de configurar seu próprio sistema operacional com regras rigorosas.
@@ -290,6 +290,8 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 - ```difok=7``` - Deve ter pelo menos 7 caracteres que não façam parte da senha antiga
 - ```enforce_for_root``` - Implementar esta política para o utilizador root
 
-
-  
+### Conectar via SSH
+- Ir no na configuracao da maquina virtual
+- 
+   
 
