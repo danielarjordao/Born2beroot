@@ -23,11 +23,6 @@ Escolhi o Debian conforme recomendado, pois sua versatilidade, estabilidade e fa
 Ambos são utilizados para instalar, remover e gerenciar pacotes no sistema. 
 O aptitude, por sua vez, possui uma interface mais visual e algumas vantagens na sugestão de soluções para problemas, enquanto o apt é mais simples nessas funcionalidades.
 
-### O que é o AppArmor?
-O AppArmor é um sistema de controle de acesso obrigatório para Linux. 
-Ele atua como uma camada adicional de segurança, restringindo as ações de programas e limitando seu acesso a recursos específicos do sistema. 
-O AppArmor ajuda a proteger contra ameaças de segurança ao restringir as ações potenciais de programas maliciosos ou vulneráveis.
-
 ➤ O download do Debian pode ser feito pelo link abaixo:
 
 [Baixar Debian](https://www.debian.org/)
@@ -72,6 +67,9 @@ O GRUB, que significa "Grand Unified Bootloader," é um gerenciador de inicializ
 - Password de encriptacao
 - Login criado
 - Password do login criado
+- ```lsblk``` - Verificar as particoes
+- ```apt update``` - Atualiza lista de pacotes
+- ```apt upgrade``` - Verifica versoes mais recentes
 
 ### O que é SUDO?
 O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente permissões de superusuário a um usuário regular. Utilizado para realizar ações que afetam o sistema, o sudo exige autenticação, garantindo segurança e controle sobre operações críticas. Isso permite que usuários autorizados executem comandos com privilégios elevados de forma controlada e temporária.
@@ -89,6 +87,16 @@ O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente per
 - ```sudo adduser login sudo``` - Adicionar usuario no grupo sudo e lhe dar as permissoes de usuario sudo
 - ```getent group user42``` - Checar se adicionamos o usuario corretamente no grupo
 - ```getent group sudo``` - Checar se adicionamos o usuario corretamente no grupo
+
+### O que é o AppArmor?
+O AppArmor é um sistema de controle de acesso obrigatório para Linux. 
+Ele atua como uma camada adicional de segurança, restringindo as ações de programas e limitando seu acesso a recursos específicos do sistema. 
+O AppArmor ajuda a proteger contra ameaças de segurança ao restringir as ações potenciais de programas maliciosos ou vulneráveis.
+
+### Instalação do AppArmor
+- ```sudo apt install apparmor apparmor-profiles apparmor-utils``` - Instalar o apparmor
+- ```sudo apparmor_status``` - Verificar status
+- ```systemctl status apparmor``` - Conferir se esta funcionando
 
 ### O que é SSH e pra que serve
 O SSH é uma ferramenta fundamental para a administração e o acesso seguro a sistemas remotos. Ele é amplamente utilizado em ambientes de servidores, data centers e em qualquer situação em que seja necessário realizar operações remotas de forma segura.
@@ -155,6 +163,7 @@ O DHCP, que representa Protocolo de Configuração Dinâmica de Host, é um serv
 - ```mkdir /var/log/sudo``` - Criar a pasta onde ficara os logs das utilizacoes do sudo, conforme solicitado
 - ```touch /etc/sudoers.d/sudo_config``` - Criar o ficheiro com as configuracoes de senha
 - ```nano /etc/sudoers.d/sudo_config``` - Adicionar comandos abaixo com especificacoes solicitadas e necessarias
+- ```Defaults  env_reset``` -  Ajuda a garantir um ambiente limpo e controlado ao executar comandos com privilégios elevados
 - ```Defaults  passwd_tries=3``` - O número máximo de tentativas de senha para um comando sudo é 3
 - ```Defaults  badpass_message="Error"``` - Especifica uma mensagem personalizada de erro que será exibida se um usuário inserir uma senha incorreta ao usar o sudo
 - ```Defaults  logfile="/var/log/sudo/sudo_log"``` - Define o caminho do arquivo de log para o sudo
@@ -187,3 +196,4 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 - ```reject_username``` - Não pode conter o nome do utilizador
 - ```difok=7``` - Deve ter pelo menos 7 caracteres que não façam parte da senha antiga
 - ```enforce_for_root``` - Implementar esta política para o utilizador root
+
