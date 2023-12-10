@@ -256,27 +256,75 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 - ```disk_percent=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} {disk_t+= $2} END {printf("%d"), disk_u/disk_t*100}')```
 - disk_percent=$ - Variavel
 - {printf("%d"), disk_u/disk_t*100}') - Calculo da porcentagem de uso do disco
-- 
+  
 ➤ Porcentagem de utilizacao da CPU
 - ```cpul=$(vmstat 1 2 | tail -1 | awk '{printf $15}')```
 - cpul=$ - Variavel
+- vmstat - Exibe informações sobre estatísticas de memória virtual
+- 1 - Especifica que as estatísticas devem ser exibidas a cada segundo
+- 2 - Indica que o vmstat deve ser executado duas vezes para coletar dados em dois intervalos de tempo de 1 segundo
+- tail - E usado para exibir as últimas linhas de um arquivo ou saída de um comando
+- -1 - Significa que queremos apenas a última linha da saída do vmstat
+- '{printf $15}' - Printar a coluna 15 que representa o percentual de uso da CPU pelo sistema
 - ```cpu_op=$(expr 100 - $cpul)```
+- cpu_op=$ - Variavel
+- expr - E utilizado para avaliar expressões aritmética
+- 100 - $cpul - Esta diminuindo a variavel de 100
 - ```cpu_fin=$(printf "%.1f" $cpu_op)```
+- cpu_fin=$ - Variavel
+- printf "%.1f" - Formula a saida como um número de ponto flutuante com uma casa decimal 
+
 ➤ Ultimo reboot
-- lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')
+- ```lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')```
+- lb=$ - Variavel
+- who - Exibir informações sobre os usuários que estão atualmente conectados
+- -b - Especifica que queremos informações sobre a última inicialização do sistema
+- $1 == "system" - Filtra a linha que tem system na primeira coluna
+- {print $3 " " $4} - Imprime o terceiro e o quarto campo da linha, que representam a data e a hora de inicialização do sistema
+
 ➤ Utilizacao de LVM
-- lvmu=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
+- ```lvmu=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)```
+- lvmu=$ - Variavel
+- if - Comeca uma estrutura condicional
+- lsblk | grep "lvm" | wc -l - Filtra as linhas de lvm nas informacoes sobre os blocos d armazenamento do sistema e soma
+- -gt 0 - -gt significa "maior que"
+- then echo yes - Se for maior que zero a variavel recebera um yes
+- else echo no - Se for menor ou igual a zero a variavel recebera um no
+- fi - Encerra a condicional
+
 ➤ Numero de conexoes TCP
-- tcpc=$(ss -ta | grep ESTAB | wc -l)
+- ```tcpc=$(ss -ta | grep ESTAB | wc -l)```
+- tcpc=$ - Variavel
+- ss - Exibir informações sobre os sockets de rede.
+- -t - Indica que apenas as conexões TCP
+- -a - Mostra todas as conexões
+
 ➤ Numero de usuarios
-- ulog=$(users | wc -w)
+- ```ulog=$(users | wc -w)```
+- ulog=$ - Variavel
+- users - Exibe uma lista dos usuários que estão atualmente conectados ao sistema
+- wc -w - O -w especifica que o comando deve contar o número de palavras
+
 ➤ Endereco de IP e MAC
-- ip=$(hostname -I)
-- mac=$(ip link | grep "link/ether" | awk '{print $2}')
+- ```ip=$(hostname -I)```
+- ip=$ - Variavel
+- hostname - Este comando é utilizado para obter ou definir o nome do host da máquina
+- -I - Ele retorna os endereços IP associados ao host
+- ```mac=$(ip link | grep "link/ether" | awk '{print $2}')```
+- mac=$ - Variavel
+- ip link - Exibir informações sobre as interfaces de rede no sistema
+- awk '{print $2} - Imprimir o segundo campo da linha, que é o endereço MAC
+
 ➤ Numero de comandos executados com sudo
-- cmnd=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+- ```cmnd=$(journalctl _COMM=sudo | grep COMMAND | wc -l)```
+- cmnd=$ - Variavel
+- journalctl - Acessar os logs do sistema
+- _COMM=sudo - Filtro para apenas as entradas do log associadas ao comando sudo
+- grep COMMAND - filtra as linhas que contenham a string "COMMAND", ajudando a identificar entradas relacionadas a comandos
+
 ➤ Estrutura final
-wall "	Architecture: $arch
+Estrutura da forma que foi solicitada no subject recebendo as variaveis criadas
+```wall "	Architecture: $arch
 	CPU physical: $cpuf
 	vCPU: $cpuv
 	Memory Usage: $ram_use/${ram_total}MB ($ram_percent%)
@@ -288,3 +336,4 @@ wall "	Architecture: $arch
 	User log: $ulog
 	Network: IP $ip ($mac)
 	Sudo: $cmnd cmd"
+```
