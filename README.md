@@ -17,10 +17,12 @@ mbora seja mais complexo e tenha uma comunidade mais recente, oferece uma altern
 O Debian é reconhecido por sua versatilidade, flexibilidade e vasta experiência no mercado. Sendo mais estabelecido, possui uma ampla base de usuários, proporcionando uma vantagem adicional em termos de suporte e compartilhamento de conhecimento. 
 Além disso, oferece diversas opções de configuração durante a instalação, permitindo uma personalização mais detalhada desde o início.
 Escolhi o Debian conforme recomendado, pois sua versatilidade, estabilidade e facilidade de suporte, juntamente com a extensa gama de tutoriais disponíveis, são aspectos que me interessam no processo de aprendizado.
+
 ### Qual é a diferença entre apt e aptitude?
 "Apt" e "aptitude" são dois utilitários relacionados ao sistema de gerenciamento de pacotes em distribuições Linux baseadas no Debian. 
 Ambos são utilizados para instalar, remover e gerenciar pacotes no sistema. 
 O aptitude, por sua vez, possui uma interface mais visual e algumas vantagens na sugestão de soluções para problemas, enquanto o apt é mais simples nessas funcionalidades.
+
 ### O que é o AppArmor?
 O AppArmor é um sistema de controle de acesso obrigatório para Linux. 
 Ele atua como uma camada adicional de segurança, restringindo as ações de programas e limitando seu acesso a recursos específicos do sistema. 
@@ -36,7 +38,7 @@ O AppArmor ajuda a proteger contra ameaças de segurança ao restringir as açõ
 O VDI representa uma imagem de disco virtual que contém o sistema operacional, aplicativos e dados associados a uma máquina virtual.
 Ao criar uma máquina virtual no VirtualBox, você geralmente escolhe um formato de disco, como VDI, durante o processo de configuração. Isso determina como o armazenamento da máquina virtual será representado no sistema de hospedeiro. O uso do VDI facilita a portabilidade de máquinas virtuais entre diferentes sistemas que executam o VirtualBox.
 
-### Memória alocada dinamicamente
+### Como funciona a memória alocada dinamicamente
 Significa que a VM não recebe uma alocação fixa de memória no momento em que é criada, em vez disso, a memória é alocada dinamicamente conforme necessário, até atingir um limite máximo definido.
 
 ### O que é o LVM e como ele funciona?
@@ -64,12 +66,6 @@ Ele permite a criação de volumes lógicos, que podem ser utilizados para armaz
 
 ### O que é GRUB
 O GRUB, que significa "Grand Unified Bootloader," é um gerenciador de inicialização (bootloader) amplamente utilizado em sistemas operacionais baseados em Unix, como Linux. O objetivo principal do GRUB é carregar e iniciar o sistema operacional no computador quando este é inicializado.
-
-### Configuração de máquina virtual
-- Selecionar ```Debian``` GNU/Linux
-- Password de encriptacao
-- Login criado
-- Password do login criado
 
 ### O que é SUDO?
 O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente permissões de superusuário a um usuário regular. Utilizado para realizar ações que afetam o sistema, o sudo exige autenticação, garantindo segurança e controle sobre operações críticas. Isso permite que usuários autorizados executem comandos com privilégios elevados de forma controlada e temporária.
