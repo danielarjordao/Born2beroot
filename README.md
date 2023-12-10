@@ -67,6 +67,12 @@ Ele permite a criação de volumes lógicos, que podem ser utilizados para armaz
 ### O que é GRUB
 O GRUB, que significa "Grand Unified Bootloader," é um gerenciador de inicialização (bootloader) amplamente utilizado em sistemas operacionais baseados em Unix, como Linux. O objetivo principal do GRUB é carregar e iniciar o sistema operacional no computador quando este é inicializado.
 
+### Entrar de máquina virtual
+- Selecionar ```Debian``` GNU/Linux
+- Password de encriptacao
+- Login criado
+- Password do login criado
+
 ### O que é SUDO?
 O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente permissões de superusuário a um usuário regular. Utilizado para realizar ações que afetam o sistema, o sudo exige autenticação, garantindo segurança e controle sobre operações críticas. Isso permite que usuários autorizados executem comandos com privilégios elevados de forma controlada e temporária.
 
@@ -113,6 +119,18 @@ O UFW, que significa "Uncomplicated Firewall," é uma ferramenta de firewall pro
 - ```sudo ufw allow 4242``` - Abrir porta 4242 confirme solicitado no subject
 - ```sudo ufw status``` - Conferir se esta ativo e se a unica porta aberta e a 4242
 
+### O que é DHCP e quais os riscos de deixar a porta 68 aberta
+O DHCP, que representa Protocolo de Configuração Dinâmica de Host, é um serviço utilizado em redes de computadores para automatizar a atribuição de endereços IP e configurações associadas. Deixar a porta 68 aberta, vinculada ao serviço DHCP, pode expor a rede a riscos como atribuição não autorizada de endereços IP, roubo de identidade, ataques de negação de serviço (DoS), exploração de vulnerabilidades do serviço DHCP e configurações não seguras. Fechar portas e implementar boas práticas de segurança são fundamentais para proteger a integridade e confiabilidade da rede.
+
+### Fechar a porta 68
+- ```sudo ss -tunlp``` - Conferir se a porta 68 aberta
+- ```hostname -I``` - Conferir o IP
+- ```sudo nano /etc/network/interfaces``` - Entrar no arquivo para configurar as interfaces de rede
+- Encontrar ```allow-hotplug enp0s3``` e alterar para ```auto enp0s3``` - Para configurar automaticamente a interface
+- Encontrar ```iface enp0s3 inet dhcp``` e alterar para ```iface enp0s3 inet static``` - Alterar a configuracao de IP para estatica e nao DHCP
+- Adicionar as linhas a seguir no final
+- ```address your_current_ip``` - Definir o endereço de IP estático
+- ```netmask 255.255.0.0``` - 
 ### Qual a diferença entre NAT e Bridged Adapter?
 - NAT: Quando uma máquina virtual utiliza NAT, ela compartilha o endereço IP do host para conexões externas, modificando as informações de origem nos pacotes de dados para parecerem originadas do host.
 - Rede em Ponte: Ao empregar uma rede em ponte, a máquina virtual adquire seu próprio endereço IP exclusivo na mesma rede física do host, permitindo que seja reconhecida como um dispositivo independente.
