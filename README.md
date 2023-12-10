@@ -322,8 +322,7 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 - _COMM=sudo - Filtro para apenas as entradas do log associadas ao comando sudo
 - grep COMMAND - filtra as linhas que contenham a string "COMMAND", ajudando a identificar entradas relacionadas a comandos
 
-➤ Estrutura final
-Estrutura da forma que foi solicitada no subject recebendo as variaveis criadas
+➤ Estrutura final da forma que foi solicitada no subject recebendo as variaveis criadas
 ```wall "	Architecture: $arch
 	CPU physical: $cpuf
 	vCPU: $cpuv
