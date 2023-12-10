@@ -117,6 +117,19 @@ O UFW, que significa "Uncomplicated Firewall," é uma ferramenta de firewall pro
 - ```sudo ufw allow 4242``` - Abrir porta 4242 confirme solicitado no subject
 - ```sudo ufw status``` - Conferir se esta ativo e se a unica porta aberta e a 4242
 
+### Qual a diferença entre NAT e Bridged Adapter?
+- NAT: Quando uma máquina virtual utiliza NAT, ela compartilha o endereço IP do host para conexões externas, modificando as informações de origem nos pacotes de dados para parecerem originadas do host.
+- Rede em Ponte: Ao empregar uma rede em ponte, a máquina virtual adquire seu próprio endereço IP exclusivo na mesma rede física do host, permitindo que seja reconhecida como um dispositivo independente.
+
+### Conectar via SSH
+- Fechar a maquina virtual
+- ir em Settings / Network
+- Trocar de NAT para Bridged Adapter
+- ```sudo reboot``` - Para reiniciar
+- ```hostname -I``` - Descobrir o ip do hostname
+- Ir para o terminal
+- ```ssh login@ip -p 4242``` - Conectar via SSH
+
 ### Configuração de senha forte para o sudo
 - ```mkdir /var/log/sudo``` - Criar a pasta onde ficara os logs das utilizacoes do sudo, conforme solicitado
 - ```touch /etc/sudoers.d/sudo_config``` - Criar o ficheiro com as configuracoes de senha
