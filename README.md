@@ -203,26 +203,65 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 ### Construindo o script
 ➤ Arquitetura 
 - ```arch=$(uname -a)``` 
-- arch - arquitetura
-- unane - informacoes do sistema
-- -a - todas as informacoes disponiveis, incluindo a versao kernel
+- arch - Variavel
+- unane - Informacoes do sistema
+- -a - Todas as informacoes disponiveis, incluindo a versao kernel
+ 
 ➤ CPU fisica
--```cpuf=$(grep "physical id" /proc/cpuinfo | wc -l)```
-- 
+- ```cpuf=$(grep "physical id" /proc/cpuinfo | wc -l)```
+- cpuf=$ - Variavel
+- grep - Procurar padroes
+- "physical id" - Padrao a ser procurado
+- /proc/cpuinfo - Arquivo que vai procurar
+- | - Redireciona a saída do comando à esquerda para a entrada do comando à direita
+- wc - Comando que conta palavras
+- -l - Especifica que apenas o número de linhas deve ser contado
+
 ➤ CPU virtual
-- cpuv=$(grep "processor" /proc/cpuinfo | wc -l)
+- ```cpuv=$(grep "processor" /proc/cpuinfo | wc -l)```
+- cpuv=$ - Variavel
+- "processor" - Padrao a ser procurado
+- /proc/cpuinfo - Arquivo que vai procurar
+
 ➤ Memoria RAM
-- ram_total=$(free --mega | awk '$1 == "Mem:" {print $2}')
-- ram_use=$(free --mega | awk '$1 == "Mem:" {print $3}')
-- ram_percent=$(free --mega | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')
+- ```ram_total=$(free --mega | awk '$1 == "Mem:" {print $2}')```
+- ram_total=$ - Variavel
+- free - Exibir informações sobre a memória
+- --mega - Exibir em megabytes
+- awk - Vai filtrar as informacoes
+- $1 == "Mem:" - Procura linhas em que o primeiro campo e "Mem:"
+- {print $2} - Printa a segunda coluna que e o total de memoria RAM em megabytes
+- ```ram_use=$(free --mega | awk '$1 == "Mem:" {print $3}')```
+- ram_use=$ - Variavel
+- {print $3} - Printa a terceira coluna que e a quantidade de memoria RAM em uso
+- ```ram_percent=$(free --mega | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')```
+- ram_percent=$ - Variavel
+- "%.2f" - Formula a saida no formato de porcentagem
+- $3/$2*100 = Calculo da porcentagem
+
 ➤ Memoria em disco
-- disk_total=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_t += $2} END {printf ("%.1fGb\n"), disk_t/1024}')
-- disk_use=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} END {print disk_u}')
-- disk_percent=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} {disk_t+= $2} END {printf("%d"), disk_u/disk_t*100}')
+- ```disk_total=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_t += $2} END {printf ("%.1fGb\n"), disk_t/1024}')```
+- disk_total=$ - Variavel
+- df - Comando usado para exibir informacoes sobre o espaco em disco
+- -m - Especifica pra ser exibido em megabytes
+- grep -v - Procura padroes e exclui eles
+- disk_t += $2 - Criou uma variavel que esta somando os valores da segunda coluna que representa o tamanho do disco
+- END - Apos o awk indica que o bloco de código seguinte será executado após todas as linhas serem processadas
+- printf ("%.1fGb\n") -  Imprimir um valor de ponto flutuante (float) com uma casa decimal, seguido pela unidade de medida "Gb"
+- disk_t/1024 - Converte a variabel de megabytes para gigabytes
+- ```disk_use=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} END {print disk_u}')```
+- disk_use=$ - Variavel
+- {disk_u += $3} - Criou uma variavel que esta somando os valores da terceira coluna que representa o tamanho em uso do disco
+- {print disk_u} - Imprime a variavel com a soma total do uso de disco
+- ```disk_percent=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} {disk_t+= $2} END {printf("%d"), disk_u/disk_t*100}')```
+- disk_percent=$ - Variavel
+- {printf("%d"), disk_u/disk_t*100}') - Calculo da porcentagem de uso do disco
+- 
 ➤ Porcentagem de utilizacao da CPU
-- cpul=$(vmstat 1 2 | tail -1 | awk '{printf $15}')
-- cpu_op=$(expr 100 - $cpul)
-- cpu_fin=$(printf "%.1f" $cpu_op)
+- ```cpul=$(vmstat 1 2 | tail -1 | awk '{printf $15}')```
+- cpul=$ - Variavel
+- ```cpu_op=$(expr 100 - $cpul)```
+- ```cpu_fin=$(printf "%.1f" $cpu_op)```
 ➤ Ultimo reboot
 - lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')
 ➤ Utilizacao de LVM
