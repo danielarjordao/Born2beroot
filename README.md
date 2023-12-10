@@ -130,7 +130,14 @@ O DHCP, que representa Protocolo de Configuração Dinâmica de Host, é um serv
 - Encontrar ```iface enp0s3 inet dhcp``` e alterar para ```iface enp0s3 inet static``` - Alterar a configuracao de IP para estatica e nao DHCP
 - Adicionar as linhas a seguir no final
 - ```address your_current_ip``` - Definir o endereço de IP estático
-- ```netmask 255.255.0.0``` - 
+- ```netmask 255.255.0.0``` - Aqui você está configurando a máscara de sub-rede
+- ```gateway 10.11.254.254``` - Aqui define o gateway padrão
+- ```dns-nameservers 10.11.254.254``` - Aqui especifica o servidor DNS
+- ```sudo systemctl restart networking``` - Reiniciar
+- ```sudo systemctl status networking``` - Verificar status
+- ```sudo reboot``` - Reiniciar a maquina
+- ```ss -tulnp``` - Verificar se fechou a porta
+  
 ### Qual a diferença entre NAT e Bridged Adapter?
 - NAT: Quando uma máquina virtual utiliza NAT, ela compartilha o endereço IP do host para conexões externas, modificando as informações de origem nos pacotes de dados para parecerem originadas do host.
 - Rede em Ponte: Ao empregar uma rede em ponte, a máquina virtual adquire seu próprio endereço IP exclusivo na mesma rede física do host, permitindo que seja reconhecida como um dispositivo independente.
