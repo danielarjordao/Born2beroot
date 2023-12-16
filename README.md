@@ -92,6 +92,8 @@ O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente per
 - ```getent group user42``` - Verificar se adicionamos o usuário corretamente ao grupo.
 - ```getent group sudo``` -  Verificar se adicionamos o usuário corretamente ao grupo.
 - ```dpkg -s sudo``` - Verificar a instalação do sudo.
+- ```su -login``` - Trocar de usuário.
+- ```passwd``` - Trocar a senha do usuário logado.
 
 ### O que é o AppArmor?
 O AppArmor é um sistema de controle de acesso obrigatório para Linux. 
@@ -205,6 +207,9 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 - ```reject_username``` - Não pode conter o nome do usuário.
 - ```difok=7``` - Deve ter pelo menos 7 caracteres que não façam parte da senha antiga.
 - ```enforce_for_root``` -  Implementar esta política para o usuário root.
+- Salvar e fechar.
+- ```chage -l login``` - Verificar as configurações de senha do usuário.
+- ```sudo chage --maxdays 30 --mindays 2 --warndays 7 login``` - Atualizar as configurações de senha do usuário.
 
 ### O que é script
 É uma sequência de comandos armazenados num ficheiro que, quando executado, fará a função de cada comando.
@@ -366,10 +371,8 @@ O Cron é um agendador de tarefas baseado em tempo. Ele permite que os usuários
 - ```*/10 * * * * sh /caminhodoscript``` - Agendar a execução do scrip de 10 em 10 minutos.
 - */10 * * * * - Rodar de 10 em 10 minutos.
 - Salvar e fechar.
-
-➤ Comandos extras da avaliação
+- - ```sudo /etc/init.d/cron start``` - Iniciar o serviço do cron. 
 - ```sudo /etc/init.d/cron stop``` - Parar o serviço do cron.
-- ```sudo /etc/init.d/cron start``` - Iniciar o serviço do cron. 
 
 ### O que é Lighttpd
 O Lighttpd é um software de servidor web de código aberto. Ele foi projetado especialmente para ambientes com recursos limitados, consumindo uma quantidade mínima de CPU e RAM.
@@ -460,3 +463,11 @@ A assinatura de uma máquina virtual (VM) refere-se ao processo de garantir a in
 - ```shasum nomemáquina.vdi``` - Obtenha a assinatura da sua máquina.
 -  "shasum" é um comando para verificar a integridade de um arquivo por meio da soma de verificação do hash SHA-1.
 - Crie um arquivo com o nome "Signature.txt" e copie a assinatura dentro.
+- Na avaliação será feito o mesmo processo para conferir se a assinatura continua a mesma.
+- É possível criar um arquivo com a assinatura na hora da avaliação e usar o comando ```diff``` para verificar se dois arquivos são idêndicos.
+
+### Tutoriais utilizados
+https://github.com/gemartin99/Born2beroot-Tutorial
+https://github.com/AijaRe/42Porto_Born2beRoot
+https://github.com/mcombeau/Born2beroot
+
