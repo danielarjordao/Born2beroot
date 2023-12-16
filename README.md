@@ -372,15 +372,70 @@ O Lighttpd é um software de servidor web de código aberto. Ele foi projetado e
 ### O que é Wordpress
 O WordPress é uma plataforma de gerenciamento de conteúdo (CMS) popular, usada para criar e gerenciar sites e blogs. Sua instalação envolve configurar um servidor web (Lighttpd), um banco de dados (MariaDB), e a linguagem de script (PHP).
 
-### Instalação e configuração Wordpress
+### Instalação Wordpress
 - "sudo apt install wget zip" - Instalando pacotes wget e zip
 - wget - Ferramenta para baixar arquivos da internet via linha de comando
 - zip - Utilizado para compactar e descompactar arquivos no formato ZIP
-- "cd /var/www"
-
+- "cd /var/www" - Ir para a pasta usada para armazenar os arquivos dos sites
+- "sudo wget https://wordpress.org/latest.zip" - Fazer o download da versão mais recente
+- "sudo unzip latest.zip" - Descompactar o arquivo zip
+- "sudo mv html/ html_old/" - Alterar o nome da pasta atual de html para html_old
+- "sudo mv wordpress/ html" - Fazer da pasta do wordpress a pasta html
+- "sudo chmod -R 755 html" - Alterar as permissões da pasta e dos arquivos dentro dela
 
 ### O que é MariaDB
 MariaDB é uma solução de banco de dados de código aberto,  oferece desempenho, escalabilidade e recursos avançados.
 
+### Instalação e configuração MariaDB
+- "sudo apt install mariadb-server" - Instalar a MariaDB
+- "sudo mysql_secure_installation" - Como a configuração padrão a deixa insegura, utilizaremos um script fornecido pelo pacote mariadb-server para restringir o acesso ao servidor e remover contas não utilizadas.
+- A seguir, o que responder nas perguntas feitas pelo script
+- Switch to unix_socket autentication? → "N" -  A autenticação unix_socket permite que os usuários do sistema operacional autentiquem automaticamente no banco de dados MariaDB sem fornecer uma senha separada
+- Change the root password? → "N" -  No MariaDB, o usuário root não é o mesmo que o usuário root do sistema operacional. Portanto, não iremos configurar uma senha nesse momento
+- Remove anonymous users? → "Y" - Isso é uma prática de segurança comum, pois usuários anônimos podem representar um risco de segurança se não forem necessários.
+- Disallow root login remotely? → "Y" -  Isso é uma medida de segurança adicional para proteger a conta root
+- Remove test database and acces to it? → "Y" - Remover o banco de dados de teste padrão e quaisquer usuários com acesso a ele
+- Reaload privilege tables now? → "Y" -  recarregar imediatamente as tabelas de privilégios do MariaDB para aplicar as alterações feitas nas configurações de segurança
+- "mariadb" - acessar à MariaDB
+- "CREATE DATABASE wp_database;" - Criar uma base de dados para o Wordpress
+- "SHOW DATABASES;" - Verificar se a base de dados foi criada
+- "CREATE USER 'login'@'localhost' IDENTIFIED BY 'senha';" - Criar novo usuário e senha
+- "GRANT ALL PRIVILEGES ON wp_database.* TO 'login'@'localhost';" - Garantir os privilégios do novo usuário para trabalhar com a base de dados criada
+- "FLUSH PRIVILEGES;" - Atualizar permissões
+- "exit" - Sair do MariaDB
+  
 ### O que é PHP
 PHP é uma linguagem de script amplamente usada no desenvolvimento web, ele permite que os desenvolvedores criem páginas dinâmicas e interajam com bancos de dados, como o MariaDB.
+
+### Instalação PHP
+- "sudo apt install php-cgi php-mysql" - Instalamos os pacotes PHP necessários para poder executar aplicações web escritas em linguagem PHP
+
+### Configuração Wordpress
+- "cd /var/www/html" - Ir para a pasta onde está o Wordpress
+- "cp wp-config-sample.php wp-config.php" - Faz uma cópia do arquivo com o nome wp-config.php
+- "nano wp-config.php" - Entra no arquivo para alterar os dados necessários
+- Altera o nome da base de dados para wp_database
+- Altera o username para o seu usuário
+- Altera o password para a senha que você criou com o usuário do MariaDB
+- Salvar e fechar
+- "sudo lighty-enable-mod fastcgi" - Permitimos o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web no servidor
+- "sudo lighty-enable-mod fastcgi-php" -  Permitimos o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web baseadas em PHP no servidor
+- "sudo service lighttpd force-reload" - Atualizamos as alterações
+- Agora podemos ir ao navegador e digitar nosso IP
+- Aparecerá a página de cadastro que deverá ser preenchida com seus dados
+- Clicar em "Install WordPres"
+- Se quiser configurar o site, digitar no navegador "IP/wp-admin"
+- Iniciar a sessão com a sua conta
+
+### Serviço adicional - O que é SSHguard
+SSHGuard é uma ferramenta de segurança que ajuda a proteger os servidores SSH contra ataques automatizados, tornando o acesso ao sistema mais seguro e robusto. O programa que categoriza o comportamento de usuarios e atribui "notas", bloqueando o usuario for XXX segundos quando atinge pontuação XX
+
+### Instalação e configuração SSHguard
+- "https://www.sshguard.net/" - Para mais informações
+- "sudo apt install sshguard" - Para instalar
+- "sudo nano /etc/sshguard/sshguard.conf" - Entrar no arquivo de configuração
+- Threshold 30 - Como errar a senha configura 10 pontos, colocando 30, bloqueará se errar 3 vezes
+- As configurações estão em segundos, então configuraremos quantos segundos o usuário ficará bloqueado se alcançar a pontuação. Esse valor é acumulativo, sendo multiplicado por 1.5 a cada vez.
+- "sudo service sshguard start" - Começar a rodar
+- "sudo service sshguard status" - Verificar status e informações
+- "sudo iptables -L -n" - Checar ips bloqueados
