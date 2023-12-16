@@ -63,30 +63,30 @@ Ele permite a criação de volumes lógicos, que podem ser utilizados para armaz
 O GRUB, que significa "Grand Unified Bootloader," é um gerenciador de inicialização (bootloader) amplamente utilizado em sistemas operacionais baseados em Unix, como Linux. O objetivo principal do GRUB é carregar e iniciar o sistema operacional no computador quando este é inicializado.
 
 ### Entrar de máquina virtual
-- Selecionar ```Debian``` GNU/Linux
-- Password de encriptacao
-- Login criado
-- Password do login criado
-- ```lsblk``` - Verificar as particoes
-- ```apt update``` - Atualiza lista de pacotes
-- ```apt upgrade``` - Verifica versoes mais recentes
+- Selecionar ```Debian``` GNU/Linux.
+- Senha de  criptografia.
+- Login criado.
+- Senha do login criado.
+- ```lsblk``` - Verificar as partições.
+- ```apt update``` - Atualizar lista de pacotes.
+- ```apt upgrade``` - Verificar versões mais recentes.
 
 ### O que é SUDO?
 O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente permissões de superusuário a um usuário regular. Utilizado para realizar ações que afetam o sistema, o sudo exige autenticação, garantindo segurança e controle sobre operações críticas. Isso permite que usuários autorizados executem comandos com privilégios elevados de forma controlada e temporária.
 
 ### Instalação do sudo
-- ```Su``` - Entrar como usuario root
-- Password do root
-- ```apt install sudo``` - Instalar pacotes necessarios
-- ```sudo reboot``` - Reiniciar a maquina
-- ```sudo -V``` - Para checar a instalacao do sudo
-- ```sudo adduser login``` - Checar se o login criado na instalacao ja existe
-- ```sudo addgroup user42``` - Criar grupo que foi solicitado no subject
-- ```getent group user42``` - Checar se o grupo foi criado corretamente, getent (get entries)
-- ```sudo adduser login user42``` - Adicionar usuario no grupo user42
-- ```sudo adduser login sudo``` - Adicionar usuario no grupo sudo e lhe dar as permissoes de usuario sudo
-- ```getent group user42``` - Checar se adicionamos o usuario corretamente no grupo
-- ```getent group sudo``` - Checar se adicionamos o usuario corretamente no grupo
+- ```Su``` - Entrar como usuário root.
+- Senha do root.
+- ```apt install sudo``` - Instalar pacotes necessários.
+- ```sudo reboot``` - Reiniciar a máquina.
+- ```sudo -V``` - Para verificar a instalação do sudo.
+- ```sudo adduser login``` - Verificar se o login criado na instalação já existe.
+- ```sudo addgroup user42``` - Criar o grupo solicitado no assunto.
+- ```getent group user42``` - Verificar se o grupo foi criado corretamente (getent - obter entradas).
+- ```sudo adduser login user42``` - Adicionar o usuário ao grupo user42.
+- ```sudo adduser login sudo``` - Adicionar o usuário ao grupo sudo e conceder as permissões de usuário sudo.
+- ```getent group user42``` - Verificar se adicionamos o usuário corretamente ao grupo.
+- ```getent group sudo``` -  Verificar se adicionamos o usuário corretamente ao grupo.
 
 ### O que é o AppArmor?
 O AppArmor é um sistema de controle de acesso obrigatório para Linux. 
@@ -94,83 +94,83 @@ Ele atua como uma camada adicional de segurança, restringindo as ações de pro
 O AppArmor ajuda a proteger contra ameaças de segurança ao restringir as ações potenciais de programas maliciosos ou vulneráveis.
 
 ### Instalação do AppArmor
-- ```sudo apt install apparmor apparmor-profiles apparmor-utils``` - Instalar o apparmor
-- ```sudo apparmor_status``` - Verificar status
-- ```systemctl status apparmor``` - Conferir se esta funcionando
+- ```sudo apt install apparmor apparmor-profiles apparmor-utils``` - Instalar o AppArmor.
+- ```sudo apparmor_status``` - Verificar o status do AppArmor.
+- ```systemctl status apparmor``` - Verificar se está funcionando.
 
 ### O que é SSH e pra que serve
 O SSH é uma ferramenta fundamental para a administração e o acesso seguro a sistemas remotos. Ele é amplamente utilizado em ambientes de servidores, data centers e em qualquer situação em que seja necessário realizar operações remotas de forma segura.
 
 ### Instalação e configuração do SSH
-- ```sudo apt update``` - Atualizar a lista de pacotes disponíveis nos repositórios configurados no sistema
-- ```sudo apt install openssh-server``` - Instalar OpenSSH, principal ferramenta de conectividade para o login remoto com o protocolo SSH
-- ```Y``` - Para confirmar
-- ```sudo service ssh status``` - Verificar se esta ativo e foi instalado corretamente
-- ```su``` - Ir para o root para ter as permissoes que precisamos
-- Password do root
-- ```nano /etc/ssh/sshd_config``` - Alterar configuracoes do ssh
-- Encontrar ```#Port22``` e alterar para ```Port4242``` - Conforme solicitada a porta 4242 no subject
-- Encontrar ```#PermitRootLogin no``` e apagar o # para tirar do comentario - Conforme solicitado no subject para nao permitir o login pelo usuario Root.
-- Salvar alteracoes feitas
-- ```nano /etc/ssh/ssh_config``` - Alterar outras configuracoes do ssh
-- Encontrar ```#Port22``` e alterar para ```Port4242``` - Conforme solicitada a porta 4242 no subject
-- ```sudo service ssh restart``` - Reiniciar o SSH para atualizar as alteraoes
-- ```sudo service ssh status``` - Confirmar alteracoes
+- ```sudo apt update``` - Atualizar a lista de pacotes disponíveis nos repositórios configurados no sistema.
+- ```sudo apt install openssh-server``` - Instalar o OpenSSH, a principal ferramenta de conectividade para o login remoto com o protocolo SSH.
+- ```Y``` - Para confirmar.
+- ```sudo service ssh status``` - Verificar se está ativo e foi instalado corretamente.
+su - Acessar como root para obter as permissões necessárias.
+- Senha do root.
+- ```nano /etc/ssh/sshd_config``` - Alterar configurações do SSH.
+- Encontrar ```#Port22``` e alterar para ```Port4242``` - Conforme solicitado na porta 4242 no assunto.
+- Encontrar ```#PermitRootLogin no``` e remover o # para descomentar - Conforme solicitado no assunto para não permitir o login pelo usuário root.
+- Salvar as alterações feitas.
+- ```nano /etc/ssh/ssh_config``` - Alterar outras configurações do SSH.
+- Encontrar ```#Port22``` e alterar para ```Port4242``` - Conforme solicitado na porta 4242 no assunto.
+- ```sudo service ssh restart``` - Reiniciar o SSH para atualizar as alterações.
+- ```sudo service ssh status``` - Confirmar as alterações.
 
 ### O que é UFW e pra que serve
 O UFW, que significa "Uncomplicated Firewall," é uma ferramenta de firewall projetada para simplificar o gerenciamento de regras e facilitar o bloqueio ou liberação de tráfego em portas específicas.
 
 ### Instalação e configuração do UFW
-- ```sudo apt install ufw``` - Instalar o UFW
-- ```Y``` - Confirmar instalacao
-- ```sudo ufw enable``` - Ativar UFW
-- ```sudo ufw allow 4242``` - Abrir porta 4242 confirme solicitado no subject
-- ```sudo ufw status``` - Conferir se esta ativo e se a unica porta aberta e a 4242
+- ```sudo apt install ufw``` - Instalar o UFW.
+- ```Y``` - Confirmar a instalação.
+- ```sudo ufw enable``` - Ativar o UFW.
+- ```sudo ufw allow 4242``` - Abrir a porta 4242 conforme solicitado no assunto.
+- ```sudo ufw status``` - Verificar se está ativo e se a única porta aberta é a 4242.
 
 ### O que é DHCP e quais os riscos de deixar a porta 68 aberta
 O DHCP, que representa Protocolo de Configuração Dinâmica de Host, é um serviço utilizado em redes de computadores para automatizar a atribuição de endereços IP e configurações associadas. Deixar a porta 68 aberta, vinculada ao serviço DHCP, pode expor a rede a riscos como atribuição não autorizada de endereços IP, roubo de identidade, ataques de negação de serviço (DoS), exploração de vulnerabilidades do serviço DHCP e configurações não seguras. Fechar portas e implementar boas práticas de segurança são fundamentais para proteger a integridade e confiabilidade da rede.
 
-### Fechar a porta 68
-- ```sudo ss -tunlp``` - Conferir se a porta 68 aberta
-- ```hostname -I``` - Conferir o IP
-- ```sudo nano /etc/network/interfaces``` - Entrar no arquivo para configurar as interfaces de rede
-- Encontrar ```allow-hotplug enp0s3``` e alterar para ```auto enp0s3``` - Para configurar automaticamente a interface
-- Encontrar ```iface enp0s3 inet dhcp``` e alterar para ```iface enp0s3 inet static``` - Alterar a configuracao de IP para estatica e nao DHCP
-- Adicionar as linhas a seguir no final
-- ```address your_current_ip``` - Definir o endereço de IP estático
-- ```netmask 255.255.0.0``` - Aqui você está configurando a máscara de sub-rede
-- ```gateway 10.11.254.254``` - Aqui define o gateway padrão
-- ```dns-nameservers 10.11.254.254``` - Aqui especifica o servidor DNS
-- ```sudo systemctl restart networking``` - Reiniciar
-- ```sudo systemctl status networking``` - Verificar status
-- ```sudo reboot``` - Reiniciar a maquina
-- ```ss -tulnp``` - Verificar se fechou a porta
+### Fechar a Porta 68
+- ```sudo ss -tunlp``` - Verificar se a porta 68 está aberta.
+- ```hostname -I``` - Verificar o IP.
+- ```sudo nano /etc/network/interfaces``` - Acessar o arquivo para configurar as interfaces de rede.
+- Encontrar ```allow-hotplug enp0s3``` e alterar para ```auto enp0s3``` - Para configurar automaticamente a interface.
+- Encontrar ```iface enp0s3 inet dhcp``` e alterar para ```iface enp0s3 inet static``` - Alterar a configuração de IP para estática.
+- Adicionar as seguintes linhas no final:
+- ```address your_current_ip``` - Definir o endereço de IP estático.
+- ```netmask 255.255.0.0``` - Configurar a máscara de sub-rede.
+- ```gateway 10.11.254.254``` - Definir o gateway padrão.
+- ```dns-nameservers 10.11.254.254``` - Especificar o servidor DNS.
+- ```sudo systemctl restart networking``` - Reiniciar.
+- ```sudo systemctl status networking``` - Verificar o status.
+- ```sudo reboot``` - Reiniciar a máquina.
+- ```ss -tulnp``` - Verificar se a porta foi fechada.
   
 ### Qual a diferença entre NAT e Bridged Adapter?
 - NAT: Quando uma máquina virtual utiliza NAT, ela compartilha o endereço IP do host para conexões externas, modificando as informações de origem nos pacotes de dados para parecerem originadas do host.
 - Rede em Ponte: Ao empregar uma rede em ponte, a máquina virtual adquire seu próprio endereço IP exclusivo na mesma rede física do host, permitindo que seja reconhecida como um dispositivo independente.
 
 ### Conectar via SSH
-- Fechar a maquina virtual
-- ir em Settings / Network
-- Trocar de NAT para Bridged Adapter
-- ```sudo reboot``` - Para reiniciar
-- ```hostname -I``` - Descobrir o ip do hostname
-- Ir para o terminal
-- ```ssh login@ip -p 4242``` - Conectar via SSH
+- Fechar a máquina virtual.
+- Ir em Settings / Network.
+- Trocar de NAT para Bridged Adapter.
+- ```sudo reboot``` - Para reiniciar.
+- ```hostname -I``` - Descobrir o ip do hostname.
+- Ir para o terminal.
+- ```ssh login@ip -p 4242``` - Conectar via SSH.
 
 ### Configuração de senha forte para o sudo
-- ```mkdir /var/log/sudo``` - Criar a pasta onde ficara os logs das utilizacoes do sudo, conforme solicitado
-- ```touch /etc/sudoers.d/sudo_config``` - Criar o ficheiro com as configuracoes de senha
-- ```nano /etc/sudoers.d/sudo_config``` - Adicionar comandos abaixo com especificacoes solicitadas e necessarias
-- ```Defaults  env_reset``` -  Ajuda a garantir um ambiente limpo e controlado ao executar comandos com privilégios elevados
-- ```Defaults  passwd_tries=3``` - O número máximo de tentativas de senha para um comando sudo é 3
-- ```Defaults  badpass_message="Error"``` - Especifica uma mensagem personalizada de erro que será exibida se um usuário inserir uma senha incorreta ao usar o sudo
-- ```Defaults  logfile="/var/log/sudo/sudo_log"``` - Define o caminho do arquivo de log para o sudo
-- ```Defaults  log_input, log_output``` - Habilita o registro de entrada e saída no arquivo de log configurado
-- ```Defaults  iolog_dir="/var/log/sudo"``` - Especifica o diretório onde os logs de entrada e saída do sudo serão armazenados
-- ```Defaults  requiretty``` - Indica que o sudo só pode ser executado a partir de um terminal interativo (TTY)
-- ```Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"``` - Especifica os diretórios nos quais os comandos podem ser procurados quando o sudo é usado
+- ```mkdir /var/log/sudo``` - Criar a pasta onde ficarão os logs das utilizações do sudo, conforme solicitado.
+- ```touch /etc/sudoers.d/sudo_config``` - Criar o arquivo com as configurações de senha.
+- ```nano /etc/sudoers.d/sudo_config``` - Adicionar os comandos abaixo com as especificações solicitadas e necessárias.
+- ```Defaults  env_reset``` -  Ajuda a garantir um ambiente limpo e controlado ao executar comandos com privilégios elevados.
+- ```Defaults  passwd_tries=3``` - O número máximo de tentativas de senha para um comando sudo é 3.
+- ```Defaults  badpass_message="Error"``` - Especifica uma mensagem personalizada de erro que será exibida se um usuário inserir uma senha incorreta ao usar o sudo.
+- ```Defaults  logfile="/var/log/sudo/sudo_log"``` -  Define o caminho do arquivo de log para o sudo.
+- ```Defaults  log_input, log_output``` - Habilita o registro de entrada e saída no arquivo de log configurado.
+- ```Defaults  iolog_dir="/var/log/sudo"``` - Especifica o diretório onde os logs de entrada e saída do sudo serão armazenados.
+- ```Defaults  requiretty``` - Indica que o sudo só pode ser executado a partir de um terminal interativo (TTY).
+- ```Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"``` - Especifica os diretórios nos quais os comandos podem ser procurados quando o sudo é usado.
 
 ### Vantagens e desvantagens do uso de políticas de senha rigorosas
 - Vantagens: Contribuem para senhas mais seguras, dificultando a adivinhação ou a quebra por força bruta.
@@ -180,153 +180,154 @@ O DHCP, que representa Protocolo de Configuração Dinâmica de Host, é um serv
 A função específica do libpam-pwquality é fornecer verificações e políticas de qualidade de senha durante o processo de autenticação. Essa biblioteca é frequentemente usada para melhorar a segurança das senhas no sistema. 
 
 ### Configurações de política de senhas fortes
-- ```nano /etc/login.defs``` - Entrar no ficheiro e editar politicas de senha
-- Encontrar ```PASS_MAX_DAYS 99999``` e alterar para ```PASS_MAX_DAYS 30``` - Maximo de 30 dias utilizando a mesma senha.
-- Encontrar ```PASS_MIN_DAYS 0``` e alterar para ```PASS_MIN_DAYS 2``` - Minimo de 2 dias com a mesma senha
-- ```PASS_WARN_AGE 7``` - Ja esta configurado certo, para dar um aviso 7 dias antes da senha expirar
-- ```sudo apt install libpam-pwquality``` - Instalar a biblioteca Libpam-pwquality para colocar os requisitos
-- ```Y``` - Confirmar instalacao
-- ```nano /etc/pam.d/common-password``` - Entrar no arquivo para colocar requisitos solicitados
-- Encontrar ```pam_pwquality.so retry-=3``` - Atualmente so existe o comando para tentar no maximo 3 vezes
-- ```minlen=10``` - O número mínimo de caracteres que a senha deve conter
-- ```ucredit=-1``` - Deve conter pelo menos uma letra maiúscula
-- ```dcredit=-1``` - Deve conter pelo menos um dígito
-- ```lcredit=-1``` - Deve conter pelo menos uma letra minúscula
-- ```maxrepeat=3``` - Não pode ter o mesmo carácter mais de 3 vezes seguidas
-- ```reject_username``` - Não pode conter o nome do utilizador
-- ```difok=7``` - Deve ter pelo menos 7 caracteres que não façam parte da senha antiga
-- ```enforce_for_root``` - Implementar esta política para o utilizador root
+- ```nano /etc/login.defs``` -  Acessar o arquivo e editar as políticas de senha.
+- Encontrar ```PASS_MAX_DAYS 99999``` e alterar para ```PASS_MAX_DAYS 30``` - Máximo de 30 dias utilizando a mesma senha.
+- Encontrar ```PASS_MIN_DAYS 0``` e alterar para ```PASS_MIN_DAYS 2``` - Mínimo de 2 dias com a mesma senha.
+- ```PASS_WARN_AGE 7``` -  Já está configurado corretamente, para dar um aviso 7 dias antes da senha expirar.
+- ```sudo apt install libpam-pwquality``` - Instalar a biblioteca Libpam-pwquality para colocar os requisitos.
+- ```Y``` - Confirmar a instalação.
+- ```nano /etc/pam.d/common-password``` - Acessar o arquivo para inserir os requisitos solicitados.
+- Encontrar ```pam_pwquality.so retry-=3``` - - Atualmente, existe apenas o comando para tentar no máximo 3 vezes.
+- Adicionar os requisitos abaixo:
+- ```minlen=10``` - O número mínimo de caracteres que a senha deve conter.
+- ```ucredit=-1``` - Deve conter pelo menos uma letra maiúscula.
+- ```dcredit=-1``` - Deve conter pelo menos um dígito.
+- ```lcredit=-1``` - Deve conter pelo menos uma letra minúscula.
+- ```maxrepeat=3``` - Não pode ter o mesmo caractere mais de 3 vezes seguidas.
+- ```reject_username``` - Não pode conter o nome do usuário.
+- ```difok=7``` - Deve ter pelo menos 7 caracteres que não façam parte da senha antiga.
+- ```enforce_for_root``` -  Implementar esta política para o usuário root.
 
 ### O que é script
 É uma sequência de comandos armazenados num ficheiro que, quando executado, fará a função de cada comando.
 
-### Construindo o script
+### Construindo o Script
 
 ➤ Monitoring
-- "nano monitoring.sh" - Criar arquivo com os comandos
+- "nano monitoring.sh" - Criar arquivo com os comandos.
 
 ➤ Arquitetura 
 - ```arch=$(uname -a)``` 
-- arch - Variavel
-- unane - Informacoes do sistema
-- -a - Todas as informacoes disponiveis, incluindo a versao kernel
+- arch=$ - Variável.
+- unane -  Informações do sistema.
+- -a - Todas as informações disponíveis, incluindo a versão do kernel.
  
 ➤ CPU fisica
 - ```cpuf=$(grep "physical id" /proc/cpuinfo | wc -l)```
-- cpuf=$ - Variavel
-- grep - Procurar padroes
-- "physical id" - Padrao a ser procurado
-- /proc/cpuinfo - Arquivo que vai procurar
-- | - Redireciona a saída do comando à esquerda para a entrada do comando à direita
-- wc - Comando que conta palavras
-- -l - Especifica que apenas o número de linhas deve ser contado
+- cpuf=$ - Variável.
+- grep - Procurar padrões.
+- "physical id" - Padrão a ser procurado.
+- /proc/cpuinfo - Arquivo onde será feita a busca.
+- | - Redireciona a saída do comando à esquerda para a entrada do comando à direita.
+- wc - Comando que conta palavras.
+- -l - Especifica que apenas o número de linhas deve ser contado.
 
 ➤ CPU virtual
 - ```cpuv=$(grep "processor" /proc/cpuinfo | wc -l)```
-- cpuv=$ - Variavel
-- "processor" - Padrao a ser procurado
-- /proc/cpuinfo - Arquivo que vai procurar
+- cpuv=$ - Variável.
+- "processor" - Padrão a ser procurado.
+- /proc/cpuinfo - Arquivo onde será feita a busca.
 
-➤ Memoria RAM
+➤ Memória RAM
 - ```ram_total=$(free --mega | awk '$1 == "Mem:" {print $2}')```
-- ram_total=$ - Variavel
-- free - Exibir informações sobre a memória
-- --mega - Exibir em megabytes
-- awk - Vai filtrar as informacoes
-- $1 == "Mem:" - Procura linhas em que o primeiro campo e "Mem:"
-- {print $2} - Printa a segunda coluna que e o total de memoria RAM em megabytes
+- ram_total=$ - Variável.
+- free - Exibir informações sobre a memória.
+- --mega -  Exibir em megabytes.
+- awk - Filtrar as informações.
+- $1 == "Mem:" - Procura linhas em que o primeiro campo é "Mem:".
+- {print $2} - - Imprime a segunda coluna, que é o total de memória RAM em megabytes.
 - ```ram_use=$(free --mega | awk '$1 == "Mem:" {print $3}')```
-- ram_use=$ - Variavel
-- {print $3} - Printa a terceira coluna que e a quantidade de memoria RAM em uso
+- ram_use=$ - Variável.
+- {print $3} - Imprime a terceira coluna, que é a quantidade de memória RAM em uso.
 - ```ram_percent=$(free --mega | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')```
-- ram_percent=$ - Variavel
-- "%.2f" - Formula a saida no formato de porcentagem
-- $3/$2*100 = Calculo da porcentagem
+- ram_percent=$ - Variável.
+- "%.2f" - Formata a saída no formato de porcentagem.
+- $3/$2*100 = Cálculo da porcentagem.
 
-➤ Memoria em disco
+➤ Memória em disco
 - ```disk_total=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_t += $2} END {printf ("%.1fGb\n"), disk_t/1024}')```
-- disk_total=$ - Variavel
-- df - Comando usado para exibir informacoes sobre o espaco em disco
-- -m - Especifica pra ser exibido em megabytes
-- grep -v - Procura padroes e exclui eles
-- disk_t += $2 - Criou uma variavel que esta somando os valores da segunda coluna que representa o tamanho do disco
-- END - Apos o awk indica que o bloco de código seguinte será executado após todas as linhas serem processadas
-- printf ("%.1fGb\n") -  Imprimir um valor de ponto flutuante (float) com uma casa decimal, seguido pela unidade de medida "Gb"
-- disk_t/1024 - Converte a variabel de megabytes para gigabytes
+- disk_total=$ - Variável.
+- df - Comando usado para exibir informações sobre o espaço em disco.
+- -m - Especifica para exibir em megabytes.
+- grep -v - Procura padrões e exclui eles.
+- disk_t += $2 - Cria uma variável que está somando os valores da segunda coluna, que representa o tamanho do disco.
+- END - Após o awk, indica que o bloco de código seguinte será executado após todas as linhas serem processadas.
+- printf ("%.1fGb\n") - Imprimir um valor de ponto flutuante com uma casa decimal, seguido pela unidade de medida "Gb".
+- disk_t/1024 - Converte a variável de megabytes para gigabytes.
 - ```disk_use=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} END {print disk_u}')```
-- disk_use=$ - Variavel
-- {disk_u += $3} - Criou uma variavel que esta somando os valores da terceira coluna que representa o tamanho em uso do disco
-- {print disk_u} - Imprime a variavel com a soma total do uso de disco
+- disk_use=$ - Variável.
+- {disk_u += $3} -  Cria uma variável que está somando os valores da terceira coluna, que representa o tamanho em uso do disco.
+- {print disk_u} - Imprime a variável com a soma total do uso de disco.
 - ```disk_percent=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} {disk_t+= $2} END {printf("%d"), disk_u/disk_t*100}')```
-- disk_percent=$ - Variavel
-- {printf("%d"), disk_u/disk_t*100}') - Calculo da porcentagem de uso do disco
+- disk_percent=$ - Variável.
+- {printf("%d"), disk_u/disk_t*100}') - Cálculo da porcentagem de uso do disco.
   
-➤ Porcentagem de utilizacao da CPU
+➤  Porcentagem de utilização da CPU
 - ```cpul=$(vmstat 1 2 | tail -1 | awk '{printf $15}')```
-- cpul=$ - Variavel
-- vmstat - Exibe informações sobre estatísticas de memória virtual
-- 1 - Especifica que as estatísticas devem ser exibidas a cada segundo
-- 2 - Indica que o vmstat deve ser executado duas vezes para coletar dados em dois intervalos de tempo de 1 segundo
-- tail - E usado para exibir as últimas linhas de um arquivo ou saída de um comando
-- -1 - Significa que queremos apenas a última linha da saída do vmstat
-- '{printf $15}' - Printar a coluna 15 que representa o percentual de uso da CPU pelo sistema
+- cpul=$ - Variável.
+- vmstat - Exibir informações sobre estatísticas de memória virtual.
+- 1 - Especifica que as estatísticas devem ser exibidas a cada segundo.
+- 2 - Indica que o vmstat deve ser executado duas vezes para coletar dados em dois intervalos de tempo de 1 segundo.
+- tail - É usado para exibir as últimas linhas de um arquivo ou saída de um comando.
+- -1 - Significa que queremos apenas a última linha da saída do vmstat.
+- '{printf $15}' -  Imprime a coluna 15, que representa o percentual de uso da CPU pelo sistema.
 - ```cpu_op=$(expr 100 - $cpul)```
-- cpu_op=$ - Variavel
-- expr - E utilizado para avaliar expressões aritmética
-- 100 - $cpul - Esta diminuindo a variavel de 100
+- cpu_op=$ - Variável.
+- expr - É utilizado para avaliar expressões aritméticas.
+- 100 - $cpul - Está diminuindo a variável de 100.
 - ```cpu_fin=$(printf "%.1f" $cpu_op)```
-- cpu_fin=$ - Variavel
-- printf "%.1f" - Formula a saida como um número de ponto flutuante com uma casa decimal 
-
-➤ Ultimo reboot
+- cpu_fin=$ - Variável.
+- printf "%.1f" - Formata a saída como um número de ponto flutuante com uma casa decimal.
+- 
+➤ Último reboot
 - ```lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')```
-- lb=$ - Variavel
-- who - Exibir informações sobre os usuários que estão atualmente conectados
-- -b - Especifica que queremos informações sobre a última inicialização do sistema
-- $1 == "system" - Filtra a linha que tem system na primeira coluna
-- {print $3 " " $4} - Imprime o terceiro e o quarto campo da linha, que representam a data e a hora de inicialização do sistema
+- lb=$ - Variável.
+- who - Exibir informações sobre os usuários que estão atualmente conectados.
+- -b - Especifica que queremos informações sobre a última inicialização do sistema.
+- $1 == "system" - Filtra a linha que tem "system" na primeira coluna.
+- {print $3 " " $4} - Imprime o terceiro e o quarto campo da linha, que representam a data e a hora de inicialização do sistema.
 
-➤ Utilizacao de LVM
+➤ Utilização de LVM
 - ```lvmu=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)```
-- lvmu=$ - Variavel
-- if - Comeca uma estrutura condicional
-- lsblk | grep "lvm" | wc -l - Filtra as linhas de lvm nas informacoes sobre os blocos d armazenamento do sistema e soma
-- -gt 0 - -gt significa "maior que"
-- then echo yes - Se for maior que zero a variavel recebera um yes
-- else echo no - Se for menor ou igual a zero a variavel recebera um no
-- fi - Encerra a condicional
+- lvmu=$ - Variável.
+- if - Começa uma estrutura condicional.
+- lsblk | grep "lvm" | wc -l - Filtra as linhas de LVM nas informações sobre os blocos de armazenamento do sistema e soma.
+- -gt 0 - -gt significa "maior que".
+- then echo yes - Se for maior que zero, a variável receberá um "yes".
+- else echo no - Se for menor ou igual a zero, a variável receberá um "no".
+- fi - Encerra a condicional.
 
-➤ Numero de conexoes TCP
+➤ Número de Conexões TCP
 - ```tcpc=$(ss -ta | grep ESTAB | wc -l)```
-- tcpc=$ - Variavel
-- ss - Exibir informações sobre os sockets de rede.
-- -t - Indica que apenas as conexões TCP
-- -a - Mostra todas as conexões
+- tcpc=$ - Variável.
+- ss - Exibe informações sobre os sockets de rede.
+- -t - Indica apenas as conexões TCP.
+- -a - Mostra todas as conexões.
 
-➤ Numero de usuarios
+➤ Número de Usuários
 - ```ulog=$(users | wc -w)```
-- ulog=$ - Variavel
-- users - Exibe uma lista dos usuários que estão atualmente conectados ao sistema
-- wc -w - O -w especifica que o comando deve contar o número de palavras
+- ulog=$ - Variável.
+- users - Exibe uma lista dos usuários que estão atualmente conectados ao sistema.
+- wc -w - O "-w" especifica que o comando deve contar o número de palavras.
 
-➤ Endereco de IP e MAC
+➤ Endereço de IP e MAC
 - ```ip=$(hostname -I)```
-- ip=$ - Variavel
-- hostname - Este comando é utilizado para obter ou definir o nome do host da máquina
-- -I - Ele retorna os endereços IP associados ao host
+- ip=$ - VVariável.
+- hostname - Este comando é utilizado para obter ou definir o nome do host da máquina.
+- -I - Ele retorna os endereços IP associados ao host.
 - ```mac=$(ip link | grep "link/ether" | awk '{print $2}')```
-- mac=$ - Variavel
-- ip link - Exibir informações sobre as interfaces de rede no sistema
-- awk '{print $2} - Imprimir o segundo campo da linha, que é o endereço MAC
+- mac=$ - Variável.
+- ip link - Exibe informações sobre as interfaces de rede no sistema.
+- awk '{print $2} - Imprimir o segundo campo da linha, que é o endereço MAC.
 
-➤ Numero de comandos executados com sudo
+➤ Número de Comandos Executados com Sudo
 - ```cmnd=$(journalctl _COMM=sudo | grep COMMAND | wc -l)```
-- cmnd=$ - Variavel
-- journalctl - Acessar os logs do sistema
-- _COMM=sudo - Filtro para apenas as entradas do log associadas ao comando sudo
-- grep COMMAND - filtra as linhas que contenham a string "COMMAND", ajudando a identificar entradas relacionadas a comandos
+- cmnd=$ - Variável.
+- journalctl - Acessar os logs do sistema.
+- _COMM=sudo - Filtro para apenas as entradas do log associadas ao comando sudo.
+- grep COMMAND - Filtra as linhas que contenham a string "COMMAND", ajudando a identificar entradas relacionadas a comandos.
 
-➤ Estrutura final da forma que foi solicitada no subject recebendo as variaveis criadas
+➤ Estrutura final da forma que foi solicitada no subject recebendo as variáveis criadas:
 ```wall "	Architecture: $arch
 	CPU physical: $cpuf
 	vCPU: $cpuv
@@ -347,106 +348,107 @@ O Cron é um agendador de tarefas baseado em tempo. Ele permite que os usuários
 ### Configuração do Crontab
 - "chmod 777 monitoring.sh" - Dar as permissões para o arquivo.
 - "sudo crontab -u root -e" -
-- crontab - Comando para criar ou editar uma tabela cron
+- crontab - Comando para criar ou editar uma tabela cron.
 - -u root - Especifica o usuário que irá editar a tabela cron.
-- -e - Indica que quer editar a tabela cron
-- "@reboot sleep 10; sh /caminhodoscript" - A a execução do script no momento em que o servidor é inicializado
-- sleep 10 - Aguarda 10 segundos para garantir que o ambiente do servidor esteja completamente inicializado antes de executar o script
-- sh -  Comando usado para executar scripts de shell
-- "*/10 * * * * sh /caminhodoscript" - Adicionar esse comando ao final do arquivo
-- */10 * * * * - Rodar de 10 em 10 minutos
-- Salvar e fechar
+- -e - Indica que quer editar a tabela cron.
+- Adicionar esses comando ao final do arquivo:
+- "@reboot sleep 10; sh /caminhodoscript" - Agendar a execução do script no momento em que o servidor é inicializado.
+- sleep 10 - Aguardar 10 segundos para garantir que o ambiente do servidor esteja completamente inicializado antes de executar o script.
+- sh - Comando usado para executar scripts de shell.
+- "*/10 * * * * sh /caminhodoscript" - Agendar a execução do scrip de 10 em 10 minutos.
+- */10 * * * * - Rodar de 10 em 10 minutos.
+- Salvar e fechar.
 
 ➤ Comandos extras da avaliação
-- "sudo /etc/init.d/cron stop" - Parar o serviço do cron
-- "sudo /etc/init.d/cron start" - Iniciar o serviço do cron 
+- "sudo /etc/init.d/cron stop" - Parar o serviço do cron.
+- "sudo /etc/init.d/cron start" - Iniciar o serviço do cron. 
 
 ### O que é Lighttpd
 O Lighttpd é um software de servidor web de código aberto. Ele foi projetado especialmente para ambientes com recursos limitados, consumindo uma quantidade mínima de CPU e RAM.
 
 ### Instalação Lighttpd
-- "sudo apt install lighttpd" - Instalar lighttpd
-- "sudo ufw allow 80" - Permitir ligações através da porta 80, que é a porta padrão para o tráfego HTTP na web
-- "sudo ufw status" - Verificar se a porta 80 aparece
+- "sudo apt install lighttpd" - Instalar o lighttpd.
+- "sudo ufw allow 80" - Permitir conexões através da porta 80, que é a porta padrão para o tráfego HTTP na web.
+- "sudo ufw status" - Verificar se a porta 80 está habilitada.
 
 ### O que é Wordpress
 O WordPress é uma plataforma de gerenciamento de conteúdo (CMS) popular, usada para criar e gerenciar sites e blogs. Sua instalação envolve configurar um servidor web (Lighttpd), um banco de dados (MariaDB), e a linguagem de script (PHP).
 
 ### Instalação Wordpress
-- "sudo apt install wget zip" - Instalando pacotes wget e zip
-- wget - Ferramenta para baixar arquivos da internet via linha de comando
-- zip - Utilizado para compactar e descompactar arquivos no formato ZIP
-- "cd /var/www" - Ir para a pasta usada para armazenar os arquivos dos sites
-- "sudo wget https://wordpress.org/latest.zip" - Fazer o download da versão mais recente
-- "sudo unzip latest.zip" - Descompactar o arquivo zip
-- "sudo mv html/ html_old/" - Alterar o nome da pasta atual de html para html_old
-- "sudo mv wordpress/ html" - Fazer da pasta do wordpress a pasta html
-- "sudo chmod -R 755 html" - Alterar as permissões da pasta e dos arquivos dentro dela
+- "sudo apt install wget zip" - Instalar os pacotes wget e zip.
+- wget - Ferramenta para baixar arquivos da internet via linha de comando.
+- zip - Ferramenta para compactar e descompactar arquivos no formato ZIP.
+- "cd /var/www" - Aceder à pasta usada para armazenar os arquivos dos sites.
+- "sudo wget https://wordpress.org/latest.zip" - Baixar a versão mais recente.
+- "sudo unzip latest.zip" - Descompactar o arquivo ZIP.
+- "sudo mv html/ html_old/" - Renomear a pasta atual de html para html_old.
+- "sudo mv wordpress/ html" - Renomear a pasta do WordPress para html.
+- "sudo chmod -R 755 html" - Alterar as permissões da pasta e dos arquivos dentro dela.
 
 ### O que é MariaDB
 MariaDB é uma solução de banco de dados de código aberto,  oferece desempenho, escalabilidade e recursos avançados.
 
 ### Instalação e configuração MariaDB
-- "sudo apt install mariadb-server" - Instalar a MariaDB
-- "sudo mysql_secure_installation" - Como a configuração padrão a deixa insegura, utilizaremos um script fornecido pelo pacote mariadb-server para restringir o acesso ao servidor e remover contas não utilizadas.
-- A seguir, o que responder nas perguntas feitas pelo script
-- Switch to unix_socket autentication? → "N" -  A autenticação unix_socket permite que os usuários do sistema operacional autentiquem automaticamente no banco de dados MariaDB sem fornecer uma senha separada
-- Change the root password? → "N" -  No MariaDB, o usuário root não é o mesmo que o usuário root do sistema operacional. Portanto, não iremos configurar uma senha nesse momento
+- "sudo apt install mariadb-server" - Instalar o MariaDB.
+- "sudo mysql_secure_installation" - Como a configuração padrão deixa o sistema inseguro, utilizaremos um script fornecido pelo pacote mariadb-server para restringir o acesso ao servidor e remover contas não utilizadas.
+- A seguir, como responder às perguntas feitas pelo script:
+- Switch to unix_socket autentication? → "N" -  A autenticação unix_socket permite que os usuários do sistema operacional autentiquem automaticamente no banco de dados MariaDB sem fornecer uma senha separada.
+- Change the root password? → "N" -  No MariaDB, o usuário root não é o mesmo que o usuário root do sistema operacional. Portanto, não iremos configurar uma senha nesse momento.
 - Remove anonymous users? → "Y" - Isso é uma prática de segurança comum, pois usuários anônimos podem representar um risco de segurança se não forem necessários.
-- Disallow root login remotely? → "Y" -  Isso é uma medida de segurança adicional para proteger a conta root
-- Remove test database and acces to it? → "Y" - Remover o banco de dados de teste padrão e quaisquer usuários com acesso a ele
-- Reaload privilege tables now? → "Y" -  recarregar imediatamente as tabelas de privilégios do MariaDB para aplicar as alterações feitas nas configurações de segurança
-- "mariadb" - acessar à MariaDB
-- "CREATE DATABASE wp_database;" - Criar uma base de dados para o Wordpress
-- "SHOW DATABASES;" - Verificar se a base de dados foi criada
-- "CREATE USER 'login'@'localhost' IDENTIFIED BY 'senha';" - Criar novo usuário e senha
-- "GRANT ALL PRIVILEGES ON wp_database.* TO 'login'@'localhost';" - Garantir os privilégios do novo usuário para trabalhar com a base de dados criada
-- "FLUSH PRIVILEGES;" - Atualizar permissões
-- "exit" - Sair do MariaDB
+- Disallow root login remotely? → "Y" -  Isso é uma medida de segurança adicional para proteger a conta root.
+- Remove test database and acces to it? → "Y" - Remover o banco de dados de teste padrão e quaisquer usuários com acesso a ele.
+- Reaload privilege tables now? → "Y" -  recarregar imediatamente as tabelas de privilégios do MariaDB para aplicar as alterações feitas nas configurações de segurança.
+- "mariadb" - Acessar o MariaDB.
+- "CREATE DATABASE wp_database;" - Criar uma base de dados para o WordPress.
+- "SHOW DATABASES;" - Verificar se a base de dados foi criada.
+- "CREATE USER 'login'@'localhost' IDENTIFIED BY 'senha';" - Criar um novo usuário e senha.
+- "GRANT ALL PRIVILEGES ON wp_database.* TO 'login'@'localhost';" - Garantir os privilégios do novo usuário para trabalhar com a base de dados criada.
+- "FLUSH PRIVILEGES;" - Atualizar permissões.
+- "exit" - Sair do MariaDB.
   
 ### O que é PHP
 PHP é uma linguagem de script amplamente usada no desenvolvimento web, ele permite que os desenvolvedores criem páginas dinâmicas e interajam com bancos de dados, como o MariaDB.
 
 ### Instalação PHP
-- "sudo apt install php-cgi php-mysql" - Instalamos os pacotes PHP necessários para poder executar aplicações web escritas em linguagem PHP
+- "sudo apt install php-cgi php-mysql" - Instalamos os pacotes PHP necessários para executar aplicações web escritas em linguagem PHP.
 
 ### Configuração Wordpress
-- "cd /var/www/html" - Ir para a pasta onde está o Wordpress
-- "cp wp-config-sample.php wp-config.php" - Faz uma cópia do arquivo com o nome wp-config.php
-- "nano wp-config.php" - Entra no arquivo para alterar os dados necessários
-- Altera o nome da base de dados para wp_database
-- Altera o username para o seu usuário
-- Altera o password para a senha que você criou com o usuário do MariaDB
-- Salvar e fechar
-- "sudo lighty-enable-mod fastcgi" - Permitimos o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web no servidor
-- "sudo lighty-enable-mod fastcgi-php" -  Permitimos o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web baseadas em PHP no servidor
-- "sudo service lighttpd force-reload" - Atualizamos as alterações
-- Agora podemos ir ao navegador e digitar nosso IP
-- Aparecerá a página de cadastro que deverá ser preenchida com seus dados
-- Clicar em "Install WordPres"
-- Se quiser configurar o site, digitar no navegador "IP/wp-admin"
-- Iniciar a sessão com a sua conta
+- "cd /var/www/html" - Aceder à pasta onde está o WordPress.
+- "cp wp-config-sample.php wp-config.php" - Fazer uma cópia do arquivo com o nome wp-config.php.
+- "nano wp-config.php" -  Entrar no arquivo para alterar os dados necessários.
+- Alterar o nome da base de dados para wp_database.
+- Alterar o username para o seu usuário.
+- Alterar o password para a senha que você criou com o usuário do MariaDB.
+- Salvar e fechar.
+- "sudo lighty-enable-mod fastcgi" - Permitir o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web no servidor.
+- "sudo lighty-enable-mod fastcgi-php" - Permitir o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web baseadas em PHP no servidor.
+- "sudo service lighttpd force-reload" - Atualizamos as alterações.
+- Agora podemos ir ao navegador e digitar nosso IP.
+- Aparecerá a página de cadastro que deve ser preenchida com seus dados.
+- Clicar em "Install WordPres".
+- Se quiser configurar o site, digitar no navegador "IP/wp-admin".
+- Iniciar a sessão com a sua conta.
 
 ### Serviço adicional - O que é SSHguard
-SSHGuard é uma ferramenta de segurança que ajuda a proteger os servidores SSH contra ataques automatizados, tornando o acesso ao sistema mais seguro e robusto. O programa que categoriza o comportamento de usuarios e atribui "notas", bloqueando o usuario for XXX segundos quando atinge pontuação XX
+O SSHGuard é uma ferramenta de segurança que ajuda a proteger os servidores SSH contra ataques automatizados, tornando o acesso ao sistema mais seguro e robusto. O programa categoriza o comportamento dos usuários e atribui "notas", bloqueando o usuário por XXX segundos quando atinge a pontuação XX.
 
 ### Instalação e configuração SSHguard
-- "https://www.sshguard.net/" - Para mais informações
-- "sudo apt install sshguard" - Para instalar
-- "sudo nano /etc/sshguard/sshguard.conf" - Entrar no arquivo de configuração
-- Threshold 30 - Como errar a senha configura 10 pontos, colocando 30, bloqueará se errar 3 vezes
+- "https://www.sshguard.net/" - Para mais informações.
+- "sudo apt install sshguard" - Para instalar.
+- "sudo nano /etc/sshguard/sshguard.conf" - Entrar no arquivo de configuração.
+- Threshold 30 - Como errar a senha configura 10 pontos, colocando 30, bloqueará se errar 3 vezes.
 - As configurações estão em segundos, então configuraremos quantos segundos o usuário ficará bloqueado se alcançar a pontuação. Esse valor é acumulativo, sendo multiplicado por 1.5 a cada vez.
-- "sudo service sshguard start" - Começar a rodar
-- "sudo service sshguard status" - Verificar status e informações
-- "sudo iptables -L -n" - Checar ips bloqueados
+- "sudo service sshguard start" - Iniciar a execução.
+- "sudo service sshguard status" - Verificar status e informações.
+- "sudo iptables -L -n" - Checar IPs bloqueados.
 
 ### Como funciona a assinatura de uma máquina virtual?
 A assinatura de uma máquina virtual (VM) refere-se ao processo de garantir a integridade e autenticidade do software que compõe a VM. Isso geralmente envolve a aplicação de uma técnica chamada assinatura digital, que é uma forma de verificar se o software não foi alterado e se é realmente proveniente de uma fonte confiável.
 
 ### Como obter a assitunatura da máquina virtual
--  Desligue a máquina virtual para garantir que não tenha nenhuma alteração
--  Ir na pasta onde está localizado o arquivo .vdi de sua máquina
--  Abrir o terminal
--  "shasum nomemáquina.vdi" - Obter a assinatura se sua máquina
--  shasum é comando para identificar a integridade de um ficheiro através da soma de verificação do hash SHA-1 de um ficheiro
--  Criar um finheiro com o nome "Signature.txt" e copiar sua assinatura dentro
+- Desligue a máquina virtual para garantir que não haja nenhuma alteração.
+- Vá até a pasta onde está localizado o arquivo .vdi da sua máquina.
+- Abra o terminal.
+- "shasum nomemáquina.vdi" - Obtenha a assinatura da sua máquina.
+-  "shasum" é um comando para verificar a integridade de um arquivo por meio da soma de verificação do hash SHA-1.
+- Crie um arquivo com o nome "Signature.txt" e copie a assinatura dentro.
