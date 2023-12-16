@@ -8,6 +8,7 @@ Uma máquina virtual é um software que cria um ambiente de computação indepen
 Tem como propósito o isolamento entre sistemas operacionais, produzindo uma área de testes segura, otimizando a utilização de uma máquina física e permitindo uma fácil migração e recuperação de sistemas em caso de falhas.
 
 ➤ As instruções destacam que, ao configurar um servidor, é necessário instalar apenas os serviços mínimos essenciais. Nesse contexto, a instalação de interfaces gráficas, como X.org ou equivalentes, é proibida. 
+- ```systemctl status display-manager.service``` - Comando para garantir que não possue interface gráfica.
 
 ➤ Você deve agora escolher o sistema operacional, Rocky ou Debian.
 
@@ -70,6 +71,9 @@ O GRUB, que significa "Grand Unified Bootloader," é um gerenciador de inicializ
 - ```lsblk``` - Verificar as partições.
 - ```apt update``` - Atualizar lista de pacotes.
 - ```apt upgrade``` - Verificar versões mais recentes.
+- ```uname -v``` - Verificar o sistema operacional instalado.
+- ```hostname``` - Verificar hostname.
+- ```sudo hostnamectl set-hostname novo``` - Alterar o hostname.
 
 ### O que é SUDO?
 O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente permissões de superusuário a um usuário regular. Utilizado para realizar ações que afetam o sistema, o sudo exige autenticação, garantindo segurança e controle sobre operações críticas. Isso permite que usuários autorizados executem comandos com privilégios elevados de forma controlada e temporária.
@@ -87,6 +91,7 @@ O comando sudo em sistemas Unix/Linux, como o Linux, concede temporariamente per
 - ```sudo adduser login sudo``` - Adicionar o usuário ao grupo sudo e conceder as permissões de usuário sudo.
 - ```getent group user42``` - Verificar se adicionamos o usuário corretamente ao grupo.
 - ```getent group sudo``` -  Verificar se adicionamos o usuário corretamente ao grupo.
+- ```dpkg -s sudo``` - Verificar a instalação do sudo.
 
 ### O que é o AppArmor?
 O AppArmor é um sistema de controle de acesso obrigatório para Linux. 
@@ -126,6 +131,8 @@ O UFW, que significa "Uncomplicated Firewall," é uma ferramenta de firewall pro
 - ```sudo ufw enable``` - Ativar o UFW.
 - ```sudo ufw allow 4242``` - Abrir a porta 4242 conforme solicitado no assunto.
 - ```sudo ufw status``` - Verificar se está ativo e se a única porta aberta é a 4242.
+- ```sudo ufw status numbered``` - Visualizar regras enumeradas.
+- ```sudo ufw delete num``` - Deletar regra indicando seu número.
 
 ### O que é DHCP e quais os riscos de deixar a porta 68 aberta
 O DHCP, que representa Protocolo de Configuração Dinâmica de Host, é um serviço utilizado em redes de computadores para automatizar a atribuição de endereços IP e configurações associadas. Deixar a porta 68 aberta, vinculada ao serviço DHCP, pode expor a rede a riscos como atribuição não autorizada de endereços IP, roubo de identidade, ataques de negação de serviço (DoS), exploração de vulnerabilidades do serviço DHCP e configurações não seguras. Fechar portas e implementar boas práticas de segurança são fundamentais para proteger a integridade e confiabilidade da rede.
@@ -158,6 +165,7 @@ O DHCP, que representa Protocolo de Configuração Dinâmica de Host, é um serv
 - ```hostname -I``` - Descobrir o ip do hostname.
 - Ir para o terminal.
 - ```ssh login@ip -p 4242``` - Conectar via SSH.
+- ```wall "mensagem"``` - Digitar uma mensagem no terminal e verificar se aparece na máquina virtual.
 
 ### Configuração de senha forte para o sudo
 - ```mkdir /var/log/sudo``` - Criar a pasta onde ficarão os logs das utilizações do sudo, conforme solicitado.
@@ -204,7 +212,7 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 ### Construindo o Script
 
 ➤ Monitoring
-- "nano monitoring.sh" - Criar arquivo com os comandos.
+- ```nano monitoring.sh``` - Criar arquivo com os comandos.
 
 ➤ Arquitetura 
 - ```arch=$(uname -a)``` 
@@ -346,101 +354,101 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 O Cron é um agendador de tarefas baseado em tempo. Ele permite que os usuários programem e automatizem a execução de tarefas ou comandos em intervalos predefinidos ou em momentos específicos.  O arquivo crontab segue um formato específico com campos representando minutos, horas, dias do mês, meses e dias da semana (0 e 7 representam domingo), seguidos pelo comando a ser executado. 
 
 ### Configuração do Crontab
-- "chmod 777 monitoring.sh" - Dar as permissões para o arquivo.
-- "sudo crontab -u root -e" -
+- ```chmod 777 monitoring.sh``` - Dar as permissões para o arquivo.
+- ```sudo crontab -u root -e``` -
 - crontab - Comando para criar ou editar uma tabela cron.
 - -u root - Especifica o usuário que irá editar a tabela cron.
 - -e - Indica que quer editar a tabela cron.
 - Adicionar esses comando ao final do arquivo:
-- "@reboot sleep 10; sh /caminhodoscript" - Agendar a execução do script no momento em que o servidor é inicializado.
+- ```@reboot sleep 10; sh /caminhodoscript``` - Agendar a execução do script no momento em que o servidor é inicializado.
 - sleep 10 - Aguardar 10 segundos para garantir que o ambiente do servidor esteja completamente inicializado antes de executar o script.
 - sh - Comando usado para executar scripts de shell.
-- "*/10 * * * * sh /caminhodoscript" - Agendar a execução do scrip de 10 em 10 minutos.
+- ```*/10 * * * * sh /caminhodoscript``` - Agendar a execução do scrip de 10 em 10 minutos.
 - */10 * * * * - Rodar de 10 em 10 minutos.
 - Salvar e fechar.
 
 ➤ Comandos extras da avaliação
-- "sudo /etc/init.d/cron stop" - Parar o serviço do cron.
-- "sudo /etc/init.d/cron start" - Iniciar o serviço do cron. 
+- ```sudo /etc/init.d/cron stop``` - Parar o serviço do cron.
+- ```sudo /etc/init.d/cron start``` - Iniciar o serviço do cron. 
 
 ### O que é Lighttpd
 O Lighttpd é um software de servidor web de código aberto. Ele foi projetado especialmente para ambientes com recursos limitados, consumindo uma quantidade mínima de CPU e RAM.
 
 ### Instalação Lighttpd
-- "sudo apt install lighttpd" - Instalar o lighttpd.
-- "sudo ufw allow 80" - Permitir conexões através da porta 80, que é a porta padrão para o tráfego HTTP na web.
-- "sudo ufw status" - Verificar se a porta 80 está habilitada.
+- ```sudo apt install lighttpd``` - Instalar o lighttpd.
+- ```sudo ufw allow 80``` - Permitir conexões através da porta 80, que é a porta padrão para o tráfego HTTP na web.
+- ```sudo ufw status``` - Verificar se a porta 80 está habilitada.
 
 ### O que é Wordpress
 O WordPress é uma plataforma de gerenciamento de conteúdo (CMS) popular, usada para criar e gerenciar sites e blogs. Sua instalação envolve configurar um servidor web (Lighttpd), um banco de dados (MariaDB), e a linguagem de script (PHP).
 
 ### Instalação Wordpress
-- "sudo apt install wget zip" - Instalar os pacotes wget e zip.
+- ```sudo apt install wget zip``` - Instalar os pacotes wget e zip.
 - wget - Ferramenta para baixar arquivos da internet via linha de comando.
 - zip - Ferramenta para compactar e descompactar arquivos no formato ZIP.
-- "cd /var/www" - Aceder à pasta usada para armazenar os arquivos dos sites.
-- "sudo wget https://wordpress.org/latest.zip" - Baixar a versão mais recente.
-- "sudo unzip latest.zip" - Descompactar o arquivo ZIP.
-- "sudo mv html/ html_old/" - Renomear a pasta atual de html para html_old.
-- "sudo mv wordpress/ html" - Renomear a pasta do WordPress para html.
-- "sudo chmod -R 755 html" - Alterar as permissões da pasta e dos arquivos dentro dela.
+- ```cd /var/www``` - Aceder à pasta usada para armazenar os arquivos dos sites.
+- ```sudo wget https://wordpress.org/latest.zip``` - Baixar a versão mais recente.
+- ```sudo unzip latest.zip``` - Descompactar o arquivo ZIP.
+- ```sudo mv html/ html_old/``` - Renomear a pasta atual de html para html_old.
+- ```sudo mv wordpress/ html``` - Renomear a pasta do WordPress para html.
+- ```sudo chmod -R 755 html``` - Alterar as permissões da pasta e dos arquivos dentro dela.
 
 ### O que é MariaDB
 MariaDB é uma solução de banco de dados de código aberto,  oferece desempenho, escalabilidade e recursos avançados.
 
 ### Instalação e configuração MariaDB
-- "sudo apt install mariadb-server" - Instalar o MariaDB.
-- "sudo mysql_secure_installation" - Como a configuração padrão deixa o sistema inseguro, utilizaremos um script fornecido pelo pacote mariadb-server para restringir o acesso ao servidor e remover contas não utilizadas.
+- ```sudo apt install mariadb-server``` - Instalar o MariaDB.
+- ```sudo mysql_secure_installation``` - Como a configuração padrão deixa o sistema inseguro, utilizaremos um script fornecido pelo pacote mariadb-server para restringir o acesso ao servidor e remover contas não utilizadas.
 - A seguir, como responder às perguntas feitas pelo script:
-- Switch to unix_socket autentication? → "N" -  A autenticação unix_socket permite que os usuários do sistema operacional autentiquem automaticamente no banco de dados MariaDB sem fornecer uma senha separada.
-- Change the root password? → "N" -  No MariaDB, o usuário root não é o mesmo que o usuário root do sistema operacional. Portanto, não iremos configurar uma senha nesse momento.
-- Remove anonymous users? → "Y" - Isso é uma prática de segurança comum, pois usuários anônimos podem representar um risco de segurança se não forem necessários.
-- Disallow root login remotely? → "Y" -  Isso é uma medida de segurança adicional para proteger a conta root.
-- Remove test database and acces to it? → "Y" - Remover o banco de dados de teste padrão e quaisquer usuários com acesso a ele.
-- Reaload privilege tables now? → "Y" -  recarregar imediatamente as tabelas de privilégios do MariaDB para aplicar as alterações feitas nas configurações de segurança.
-- "mariadb" - Acessar o MariaDB.
-- "CREATE DATABASE wp_database;" - Criar uma base de dados para o WordPress.
-- "SHOW DATABASES;" - Verificar se a base de dados foi criada.
-- "CREATE USER 'login'@'localhost' IDENTIFIED BY 'senha';" - Criar um novo usuário e senha.
-- "GRANT ALL PRIVILEGES ON wp_database.* TO 'login'@'localhost';" - Garantir os privilégios do novo usuário para trabalhar com a base de dados criada.
-- "FLUSH PRIVILEGES;" - Atualizar permissões.
-- "exit" - Sair do MariaDB.
+- Switch to unix_socket autentication? → ```N``` -  A autenticação unix_socket permite que os usuários do sistema operacional autentiquem automaticamente no banco de dados MariaDB sem fornecer uma senha separada.
+- Change the root password? → ```N``` -  No MariaDB, o usuário root não é o mesmo que o usuário root do sistema operacional. Portanto, não iremos configurar uma senha nesse momento.
+- Remove anonymous users? → ```Y``` - Isso é uma prática de segurança comum, pois usuários anônimos podem representar um risco de segurança se não forem necessários.
+- Disallow root login remotely? → ```Y``` -  Isso é uma medida de segurança adicional para proteger a conta root.
+- Remove test database and acces to it? → ```Y``` - Remover o banco de dados de teste padrão e quaisquer usuários com acesso a ele.
+- Reaload privilege tables now? → ```Y``` -  recarregar imediatamente as tabelas de privilégios do MariaDB para aplicar as alterações feitas nas configurações de segurança.
+- ```mariadb``` - Acessar o MariaDB.
+- ```CREATE DATABASE wp_database;``` - Criar uma base de dados para o WordPress.
+- ```SHOW DATABASES;``` - Verificar se a base de dados foi criada.
+- ```CREATE USER 'login'@'localhost' IDENTIFIED BY 'senha';``` - Criar um novo usuário e senha.
+- ```GRANT ALL PRIVILEGES ON wp_database.* TO 'login'@'localhost';``` - Garantir os privilégios do novo usuário para trabalhar com a base de dados criada.
+- ```FLUSH PRIVILEGES;``` - Atualizar permissões.
+- ```exit``` - Sair do MariaDB.
   
 ### O que é PHP
 PHP é uma linguagem de script amplamente usada no desenvolvimento web, ele permite que os desenvolvedores criem páginas dinâmicas e interajam com bancos de dados, como o MariaDB.
 
 ### Instalação PHP
-- "sudo apt install php-cgi php-mysql" - Instalamos os pacotes PHP necessários para executar aplicações web escritas em linguagem PHP.
+- ```sudo apt install php-cgi php-mysql``` - Instalamos os pacotes PHP necessários para executar aplicações web escritas em linguagem PHP.
 
 ### Configuração Wordpress
-- "cd /var/www/html" - Aceder à pasta onde está o WordPress.
-- "cp wp-config-sample.php wp-config.php" - Fazer uma cópia do arquivo com o nome wp-config.php.
-- "nano wp-config.php" -  Entrar no arquivo para alterar os dados necessários.
+- ```cd /var/www/html``` - Aceder à pasta onde está o WordPress.
+- ```cp wp-config-sample.php wp-config.php``` - Fazer uma cópia do arquivo com o nome wp-config.php.
+- ```nano wp-config.php``` -  Entrar no arquivo para alterar os dados necessários.
 - Alterar o nome da base de dados para wp_database.
 - Alterar o username para o seu usuário.
 - Alterar o password para a senha que você criou com o usuário do MariaDB.
 - Salvar e fechar.
-- "sudo lighty-enable-mod fastcgi" - Permitir o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web no servidor.
-- "sudo lighty-enable-mod fastcgi-php" - Permitir o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web baseadas em PHP no servidor.
-- "sudo service lighttpd force-reload" - Atualizamos as alterações.
+- ```sudo lighty-enable-mod fastcgi``` - Permitir o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web no servidor.
+- ```sudo lighty-enable-mod fastcgi-php``` - Permitir o módulo fastcgi-php no Lighttpd para melhorar o desempenho e a velocidade das aplicações web baseadas em PHP no servidor.
+- ```sudo service lighttpd force-reload``` - Atualizamos as alterações.
 - Agora podemos ir ao navegador e digitar nosso IP.
 - Aparecerá a página de cadastro que deve ser preenchida com seus dados.
-- Clicar em "Install WordPres".
-- Se quiser configurar o site, digitar no navegador "IP/wp-admin".
+- Clicar em ```Install WordPres```.
+- Se quiser configurar o site, digitar no navegador ```IP/wp-admin```.
 - Iniciar a sessão com a sua conta.
 
 ### Serviço adicional - O que é SSHguard
 O SSHGuard é uma ferramenta de segurança que ajuda a proteger os servidores SSH contra ataques automatizados, tornando o acesso ao sistema mais seguro e robusto. O programa categoriza o comportamento dos usuários e atribui "notas", bloqueando o usuário por XXX segundos quando atinge a pontuação XX.
 
 ### Instalação e configuração SSHguard
-- "https://www.sshguard.net/" - Para mais informações.
-- "sudo apt install sshguard" - Para instalar.
-- "sudo nano /etc/sshguard/sshguard.conf" - Entrar no arquivo de configuração.
+- ```https://www.sshguard.net/``` - Para mais informações.
+- ```sudo apt install sshguard``` - Para instalar.
+- ```sudo nano /etc/sshguard/sshguard.conf``` - Entrar no arquivo de configuração.
 - Threshold 30 - Como errar a senha configura 10 pontos, colocando 30, bloqueará se errar 3 vezes.
 - As configurações estão em segundos, então configuraremos quantos segundos o usuário ficará bloqueado se alcançar a pontuação. Esse valor é acumulativo, sendo multiplicado por 1.5 a cada vez.
-- "sudo service sshguard start" - Iniciar a execução.
-- "sudo service sshguard status" - Verificar status e informações.
-- "sudo iptables -L -n" - Checar IPs bloqueados.
+- ```sudo service sshguard start``` - Iniciar a execução.
+- ```sudo service sshguard status``` - Verificar status e informações.
+- ```sudo iptables -L -n``` - Checar IPs bloqueados.
 
 ### Como funciona a assinatura de uma máquina virtual?
 A assinatura de uma máquina virtual (VM) refere-se ao processo de garantir a integridade e autenticidade do software que compõe a VM. Isso geralmente envolve a aplicação de uma técnica chamada assinatura digital, que é uma forma de verificar se o software não foi alterado e se é realmente proveniente de uma fonte confiável.
@@ -449,6 +457,6 @@ A assinatura de uma máquina virtual (VM) refere-se ao processo de garantir a in
 - Desligue a máquina virtual para garantir que não haja nenhuma alteração.
 - Vá até a pasta onde está localizado o arquivo .vdi da sua máquina.
 - Abra o terminal.
-- "shasum nomemáquina.vdi" - Obtenha a assinatura da sua máquina.
+- ```shasum nomemáquina.vdi``` - Obtenha a assinatura da sua máquina.
 -  "shasum" é um comando para verificar a integridade de um arquivo por meio da soma de verificação do hash SHA-1.
 - Crie um arquivo com o nome "Signature.txt" e copie a assinatura dentro.
