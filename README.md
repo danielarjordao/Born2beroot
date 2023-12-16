@@ -439,3 +439,14 @@ SSHGuard é uma ferramenta de segurança que ajuda a proteger os servidores SSH 
 - "sudo service sshguard start" - Começar a rodar
 - "sudo service sshguard status" - Verificar status e informações
 - "sudo iptables -L -n" - Checar ips bloqueados
+
+### Como funciona a assinatura de uma máquina virtual?
+A assinatura de uma máquina virtual (VM) refere-se ao processo de garantir a integridade e autenticidade do software que compõe a VM. Isso geralmente envolve a aplicação de uma técnica chamada assinatura digital, que é uma forma de verificar se o software não foi alterado e se é realmente proveniente de uma fonte confiável.
+
+### Como obter a assitunatura da máquina virtual
+-  Desligue a máquina virtual para garantir que não tenha nenhuma alteração
+-  Ir na pasta onde está localizado o arquivo .vdi de sua máquina
+-  Abrir o terminal
+-  "shasum nomemáquina.vdi" - Obter a assinatura se sua máquina
+-  shasum é comando para identificar a integridade de um ficheiro através da soma de verificação do hash SHA-1 de um ficheiro
+-  Criar um finheiro com o nome "Signature.txt" e copiar sua assinatura dentro
