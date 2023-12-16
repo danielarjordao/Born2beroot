@@ -201,6 +201,10 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 É uma sequência de comandos armazenados num ficheiro que, quando executado, fará a função de cada comando.
 
 ### Construindo o script
+
+➤ Monitoring
+- "nano monitoring.sh" - Criar arquivo com os comandos
+
 ➤ Arquitetura 
 - ```arch=$(uname -a)``` 
 - arch - Variavel
@@ -336,3 +340,47 @@ A função específica do libpam-pwquality é fornecer verificações e polític
 	Network: IP $ip ($mac)
 	Sudo: $cmnd cmd"
 ```
+
+### O que é Crontab
+O Cron é um agendador de tarefas baseado em tempo. Ele permite que os usuários programem e automatizem a execução de tarefas ou comandos em intervalos predefinidos ou em momentos específicos.  O arquivo crontab segue um formato específico com campos representando minutos, horas, dias do mês, meses e dias da semana (0 e 7 representam domingo), seguidos pelo comando a ser executado. 
+
+### Configuração do Crontab
+- "chmod 777 monitoring.sh" - Dar as permissões para o arquivo.
+- "sudo crontab -u root -e" -
+- crontab - Comando para criar ou editar uma tabela cron
+- -u root - Especifica o usuário que irá editar a tabela cron.
+- -e - Indica que quer editar a tabela cron
+- "@reboot sleep 10; sh /caminhodoscript" - A a execução do script no momento em que o servidor é inicializado
+- sleep 10 - Aguarda 10 segundos para garantir que o ambiente do servidor esteja completamente inicializado antes de executar o script
+- sh -  Comando usado para executar scripts de shell
+- "*/10 * * * * sh /caminhodoscript" - Adicionar esse comando ao final do arquivo
+- */10 * * * * - Rodar de 10 em 10 minutos
+- Salvar e fechar
+
+➤ Comandos extras da avaliação
+- "sudo /etc/init.d/cron stop" - Parar o serviço do cron
+- "sudo /etc/init.d/cron start" - Iniciar o serviço do cron 
+
+### O que é Lighttpd
+O Lighttpd é um software de servidor web de código aberto. Ele foi projetado especialmente para ambientes com recursos limitados, consumindo uma quantidade mínima de CPU e RAM.
+
+### Instalação Lighttpd
+- "sudo apt install lighttpd" - Instalar lighttpd
+- "sudo ufw allow 80" - Permitir ligações através da porta 80, que é a porta padrão para o tráfego HTTP na web
+- "sudo ufw status" - Verificar se a porta 80 aparece
+
+### O que é Wordpress
+O WordPress é uma plataforma de gerenciamento de conteúdo (CMS) popular, usada para criar e gerenciar sites e blogs. Sua instalação envolve configurar um servidor web (Lighttpd), um banco de dados (MariaDB), e a linguagem de script (PHP).
+
+### Instalação e configuração Wordpress
+- "sudo apt install wget zip" - Instalando pacotes wget e zip
+- wget - Ferramenta para baixar arquivos da internet via linha de comando
+- zip - Utilizado para compactar e descompactar arquivos no formato ZIP
+- "cd /var/www"
+
+
+### O que é MariaDB
+MariaDB é uma solução de banco de dados de código aberto,  oferece desempenho, escalabilidade e recursos avançados.
+
+### O que é PHP
+PHP é uma linguagem de script amplamente usada no desenvolvimento web, ele permite que os desenvolvedores criem páginas dinâmicas e interajam com bancos de dados, como o MariaDB.
